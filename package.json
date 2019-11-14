@@ -2,6 +2,9 @@
   "name": "react-typescript-formik",
   "version": "1.0.0",
   "license": "MIT",
+  "scripts": {
+    "server":"ts-node-dev ./src/server"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "typescript": "^3.7.2"
