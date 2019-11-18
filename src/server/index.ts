@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
   res.send(data);
 });
 
-const PORT = 8888;
+const PORT = 8080;
 const HOST = "localhost";
 
 app.listen(PORT, () => {
