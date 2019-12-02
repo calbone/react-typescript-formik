@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "server": "ts-node-dev ./src/server"
+    "server": "ts-node-dev ./src/index.ts"
   },
   "dependencies": {
     "express": "^4.17.1",
