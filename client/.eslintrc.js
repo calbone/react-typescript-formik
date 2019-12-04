@@ -21,6 +21,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
+    project: "./tsconfig.json",
     ecmaVersion: 2018,
     sourceType: "module",
     warnOnUnsupportedTypeScriptVersion: false
@@ -34,6 +35,7 @@ module.exports = {
   },
   rules: {
     // eslint
+    "no-var": "error",
     "no-console": ["error", { allow: ["warn", "error"] }],
     // @typescript-eslint
     "@typescript-eslint/explicit-function-return-type": "off",
