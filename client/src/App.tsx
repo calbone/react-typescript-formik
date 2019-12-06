@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import FormList from './containers/FormList'
+import './styles/app.scss'
 
 const App: React.FC = () => {
   return (

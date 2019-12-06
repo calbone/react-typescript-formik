@@ -1,0 +1,6 @@
+.l-main {
+  padding-top: 48px;
+  @include mq() {
+    padding-left: 240px;
+  }
+}
