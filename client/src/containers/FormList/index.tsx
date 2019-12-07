@@ -1,6 +1,7 @@
 import * as React from 'react'
-// import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+// import { connect } from 'react-redux'
+import styled from '@emotion/styled'
 // import { readQuestionnaires } from '../../actions/questionnaires'
 import Icon from '../../components/Icon'
 import PageHeader from '../../components/PageHeader'
@@ -9,26 +10,38 @@ const FormList: React.FC = () => {
   // useEffect(() => {
   //   readQuestionnaires()
   // }, [])
+  const CreateForm = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 2px;
+    background-color: #fff;
+    opacity: 1;
+    transition: 0.2s;
+    &:hover {
+      opacity: 0.6;
+    }
+    svg {
+      width: 14px;
+      height: 14px;
+      margin-right: 14px;
+      fill: #ff8e00;
+    }
+  `
   return (
     <React.Fragment>
       <PageHeader label="フォーム一覧" />
-      {/* <div className="p-pageHeader">
-        <Link to="/dashboard" className="c-return">
-          <Icon type="arrow" />
-          戻る
+      <div className="l-content l-content--narrow">
+        <Link to="/form">
+          <CreateForm>
+            <Icon type="plus" />
+            フォームを新規作成
+          </CreateForm>
         </Link>
-        <h2 className="p-pageHeader__title">フォーム一覧</h2>
-      </div> */}
-      <div className="l-content">
-        <div className="p-formList">
-          {/* <Link to="/form">
-            <div className="c-box">
-              <Icon type="plus" />
-              フォームを新規作成
-            </div>
-          </Link> */}
-          <div className="p-formList__list">
-            {/* {questionnaires.map((question, i) => {
+        {/* {questionnaires.map((question, i) => {
               return (
                 <Link
                   to={`/dashboard/form/enquete/${question.id}/edit`}
@@ -55,8 +68,6 @@ const FormList: React.FC = () => {
                 </Link>
               )
             })} */}
-          </div>
-        </div>
       </div>
     </React.Fragment>
   )
