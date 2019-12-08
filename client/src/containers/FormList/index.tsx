@@ -1,15 +1,21 @@
-import * as React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 import styled from '@emotion/styled'
-// import { readQuestionnaires } from '../../actions/questionnaires'
+import { Questionnaire } from '../../stores/domain/form/type'
+import { readQuestionnaires } from '../../stores/domain/form/action'
 import Icon from '../../components/Icon'
 import PageHeader from '../../components/PageHeader'
+import Tag from '../../components/Tag'
 
-const FormList: React.FC = () => {
-  // useEffect(() => {
-  //   readQuestionnaires()
-  // }, [])
+const FormList: React.FC<MergeProps> = ({
+  readQuestionnaires,
+  questionnaires
+}) => {
+  useEffect(() => {
+    readQuestionnaires()
+  }, [readQuestionnaires])
   const CreateForm = styled.div`
     display: flex;
     justify-content: center;
@@ -31,6 +37,34 @@ const FormList: React.FC = () => {
       fill: #ff8e00;
     }
   `
+  const FormList = styled.div`
+    margin-top: 16px;
+  `
+  const FormListItem = styled.div`
+    padding: 16px 48px 16px 16px;
+    border-top: 1px solid #f2f2f2;
+    background: #fff;
+  `
+  const FormListName = styled.p`
+    font-weight: bold;
+    a & {
+      color: #111;
+    }
+  `
+  const FormListStatus = styled.div`
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #818181;
+  `
+  const FormListEmphasis = styled.span`
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  `
   return (
     <React.Fragment>
       <PageHeader label="フォーム一覧" />
@@ -41,45 +75,47 @@ const FormList: React.FC = () => {
             フォームを新規作成
           </CreateForm>
         </Link>
-        {/* {questionnaires.map((question, i) => {
-              return (
-                <Link
-                  to={`/dashboard/form/enquete/${question.id}/edit`}
-                  key={i}
-                >
-                  <div className="p-formList__item">
-                    <p className="p-formList__name">{question.title}</p>
-                    <div className="p-formList__status">
-                      <ul className="c-tag">
-                        <li
-                          className={`c-tag__item c-tag__item--another c-tag__item--${
-                            question.show_status ? 'success' : 'disable'
-                          }`}
-                        >
-                          {question.show_status ? '公開中' : '非公開'}
-                        </li>
-                      </ul>
-                      <span className="p-formList__emphasis">
-                        {question.answer_count}人
-                      </span>
-                      が回答済
-                    </div>
-                  </div>
-                </Link>
-              )
-            })} */}
+        <FormList>
+          {questionnaires.map((question, i) => {
+            return (
+              <Link to={`/dashboard/form/enquete/${question.id}/edit`} key={i}>
+                <FormListItem>
+                  <FormListName>{question.title}</FormListName>
+                  <FormListStatus>
+                    <Tag status={question.show_status} />
+                    <FormListEmphasis>
+                      {question.answer_count}人
+                    </FormListEmphasis>
+                    が回答済
+                  </FormListStatus>
+                </FormListItem>
+              </Link>
+            )
+          })}
+        </FormList>
       </div>
     </React.Fragment>
   )
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     questionnaires: state.questionnaires.questionnaires
-//   }
-// }
+interface DispatchProps {
+  readQuestionnaires: () => void
+}
 
-// const mapDispatchToProps = { readQuestionnaires }
+interface StateProps {
+  questionnaires: Questionnaire[]
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(FormList)
-export default FormList
+interface MergeProps extends DispatchProps, StateProps {}
+
+const mapStateToProps = (state: any): StateProps => {
+  return {
+    questionnaires: state.questionnaires.questionnaires
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  readQuestionnaires: () => dispatch(readQuestionnaires())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormList)

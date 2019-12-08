@@ -7,7 +7,7 @@ export interface QuestionnairesState {
   delete: { loaded: boolean; error: boolean | null }
 }
 
-interface Questionnaires {
+export interface Questionnaire {
   id: number
   user_id: number
   title: string
@@ -36,8 +36,4 @@ interface Questionnaires {
   }
   finish_body: string
   answer_count: number
-}
-
-export interface QuestionnairesResultAPI {
-  payload?: Questionnaires[]
 }
