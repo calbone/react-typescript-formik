@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { questionnaires } from './domain/form/reducer'
+import { questionnaires } from './questionnaires'
 
 const rootReducer = () =>
   combineReducers({

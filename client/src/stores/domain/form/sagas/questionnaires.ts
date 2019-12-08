@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import * as actions from './action'
-import { readQuestionnairesRequest } from '../../../api/requests/questionnaires'
+import * as actions from '../actions/questionnaires'
+import { readQuestionnairesRequest } from '../../../../api/requests/questionnaires'
 
 // export function* handleCreateQuestionnairesRequest(action) {
 //   try {
@@ -22,12 +22,12 @@ export function* handleReadQuestionnairesRequest() {
   }
 }
 
-// export function* handleReadQuestionnaireRequest(action) {
+// export function* handleReadQuestionnaireRequest(action: object) {
 //   try {
 //     const res = yield call(readQuestionnaireRequest, action.payload)
-//     yield put(readQuestionnaireSuccess(res.data))
+//     yield put(actions.readQuestionnaireSuccess(res.data))
 //   } catch (err) {
-//     yield put(readQuestionnaireFailure())
+//     yield put(actions.readQuestionnaireFailure(err))
 //     console.error(err)
 //   }
 // }
@@ -48,10 +48,7 @@ function* questionnairesSagas() {
   //   handleCreateQuestionnairesRequest
   // )
   yield takeEvery(actions.READ_QUESTIONNAIRES, handleReadQuestionnairesRequest)
-  // yield takeEvery(
-  //   ActionTypes.READ_QUESTIONNAIRE,
-  //   handleReadQuestionnaireRequest
-  // )
+  // yield takeEvery(actions.READ_QUESTIONNAIRE, handleReadQuestionnaireRequest)
   // yield takeEvery(
   //   ActionTypes.UPDATE_QUESTIONNAIRES,
   //   handleUpdateQuestionnairesRequest

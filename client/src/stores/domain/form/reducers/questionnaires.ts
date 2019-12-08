@@ -1,5 +1,5 @@
-import { QuestionnairesState } from './type'
-import * as actions from './action'
+import { QuestionnairesState } from '../type'
+import * as actions from '../actions/questionnaires'
 
 const initialState: QuestionnairesState = {
   questionnaires: [],
@@ -52,22 +52,22 @@ export const questionnaires = (
         ...state,
         read: { loaded: true, error: true }
       }
-    // case ActionTypes.READ_QUESTIONNAIRE:
-    //   return {
-    //     ...state,
-    //     read: { loaded: false, error: null }
-    //   }
-    // case ActionTypes.READ_QUESTIONNAIRE_SUCCESS:
-    //   return {
-    //     ...state,
-    //     questionnaire: payload,
-    //     read: { loaded: true, error: false }
-    //   }
-    // case ActionTypes.READ_QUESTIONNAIRE_FAILURE:
-    //   return {
-    //     ...state,
-    //     read: { loaded: true, error: true }
-    //   }
+    case actions.READ_QUESTIONNAIRE:
+      return {
+        ...state,
+        read: { loaded: false, error: null }
+      }
+    case actions.READ_QUESTIONNAIRE_SUCCESS:
+      return {
+        ...state,
+        questionnaire: payload,
+        read: { loaded: true, error: false }
+      }
+    case actions.READ_QUESTIONNAIRE_FAILURE:
+      return {
+        ...state,
+        read: { loaded: true, error: true }
+      }
     // case ActionTypes.UPDATE_QUESTIONNAIRES:
     //   return {
     //     ...state,
