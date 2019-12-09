@@ -78,7 +78,7 @@ const FormList: React.FC<MergeProps> = ({
         <FormList>
           {questionnaires.map((question, i) => {
             return (
-              <Link to={`/dashboard/form/enquete/${question.id}/edit`} key={i}>
+              <Link to={`/enquete/${question.id}/edit`} key={i}>
                 <FormListItem>
                   <FormListName>{question.title}</FormListName>
                   <FormListStatus>

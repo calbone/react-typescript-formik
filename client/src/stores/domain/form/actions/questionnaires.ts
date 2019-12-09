@@ -21,7 +21,9 @@ export const readQuestionnairesFailure = (err: any) => ({
 
 export const readQuestionnaire = (id: string) => ({
   type: READ_QUESTIONNAIRE,
-  payload: id
+  payload: {
+    id
+  }
 })
 export const readQuestionnaireSuccess = (res: Questionnaire) => ({
   type: READ_QUESTIONNAIRE_SUCCESS,

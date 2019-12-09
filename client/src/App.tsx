@@ -9,8 +9,8 @@ const App: React.FC = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={FormList} />
-        <Route exact path="/form/enquete" component={FormEnquete} />
-        <Route exact path="/form/enquete/:id/edit" component={FormEnquete} />
+        <Route exact path="/enquete" component={FormEnquete} />
+        <Route exact path="/enquete/:id/edit" component={FormEnquete} />
       </Switch>
     </BrowserRouter>
   )

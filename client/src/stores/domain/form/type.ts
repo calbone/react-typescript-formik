@@ -1,3 +1,4 @@
+// reducer/initialStateのinterface
 export interface QuestionnairesState {
   questionnaires: []
   questionnaire: {}
@@ -7,6 +8,11 @@ export interface QuestionnairesState {
   delete: { loaded: boolean; error: boolean | null }
 }
 
+export interface AnswerSummaryState {
+  answerSummary: object
+}
+
+// mapStateToPropsのinterface
 export interface Questionnaire {
   id: number
   user_id: number
@@ -36,4 +42,24 @@ export interface Questionnaire {
   }
   finish_body: string
   answer_count: number
+}
+
+interface AnswerDetailSummaries {
+  answer_detail_summary: {
+    question_uuid: string
+    question_title: string
+    type: 'nickname' | 'choice' | 'selectbox' | 'text'
+    answer_count: number
+    summary:
+      | {
+          choice_title: string
+          choice_count: number
+        }[]
+      | []
+  }
+}
+export interface AnswerSummary {
+  total_count: number
+  confidence_available: boolean
+  answer_detail_summaries: AnswerDetailSummaries[]
 }
