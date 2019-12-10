@@ -69,7 +69,7 @@ const FormList: React.FC<MergeProps> = ({
     <React.Fragment>
       <PageHeader label="フォーム一覧" />
       <div className="l-content l-content--narrow">
-        <Link to="/form">
+        <Link to="/enquete">
           <CreateForm>
             <Icon type="plus" />
             フォームを新規作成

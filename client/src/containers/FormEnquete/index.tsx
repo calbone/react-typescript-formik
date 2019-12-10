@@ -1,14 +1,15 @@
 import React from 'react'
-import { Link, RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { readQuestionnaire } from '../../stores/domain/form/actions/questionnaires'
 import { readAnswerSummary } from '../../stores/domain/form/actions/answerSummary'
 import { Questionnaire, AnswerSummary } from '../../stores/domain/form/type'
 import Icon from '../../components/Icon'
+import PageHeader from '../../components/PageHeader'
 // import Modal from '../../components/Modal'
 // import SubModal from '../../components/SubModal'
-// import EnqueteForm from './EnqueteForm'
+import EnqueteForm from './EnqueteForm'
 // import EnqueteResult from './EnqueteResult'
 
 interface DispathProps {
@@ -95,16 +96,9 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
     show_end_datetime: new Date()
   }
   content = () => {
-    // if (this.state.selectedTabName === 'edit') {
-    //   return (
-    //     <EnqueteForm
-    //       initialValues={
-    //         this.props.match.params.id
-    //           ? this.props.questionnaire
-    //           : this.initialValues
-    //       }
-    //     />
-    //   )
+    if (this.state.selectedTabName === 'edit') {
+      return <EnqueteForm />
+    }
     // } else
     // if (this.state.selectedTabName === 'answer') {
     //   return <EnqueteResult answerSummary={this.props.answerSummary} />
@@ -113,13 +107,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
   render() {
     return (
       <React.Fragment>
-        <div className="p-pageHeader">
-          <Link to="/dashboard/form" className="c-return">
-            <Icon type="arrow" />
-            戻る
-          </Link>
-          <h2 className="p-pageHeader__title">フォーム詳細</h2>
-        </div>
+        <PageHeader label="フォーム詳細" />
         <div className="l-content l-content--narrow">
           {this.props.match.params.id && (
             <React.Fragment>
