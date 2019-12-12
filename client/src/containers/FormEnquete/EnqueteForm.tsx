@@ -3,9 +3,11 @@ import { useFormik } from 'formik'
 import styled from '@emotion/styled'
 import FormLabel from '../../components/FormLabel'
 import FieldInputText from '../../components/FieldInputText'
+import TextArea from '../../components/TextArea'
 import SelectBox from '../../components/SelectBox'
 import RadioButton from '../../components/RadioButton'
 import ToggleButton from '../../components/ToggleButton'
+import Accordion from '../../components/Accordion'
 // import { connect } from "react-redux";
 // import { push } from "connected-react-router";
 // import SubModal from "../../components/SubModal";
@@ -82,8 +84,10 @@ const EnqueteForm = () => {
               value="once"
             />
           </FormGroup>
-          <FormQuestionAccordion></FormQuestionAccordion>
         </div>
+        <FormQuestionAccordion>
+          <Accordion title="完了ページ設定" content={<TextArea rows={9} />} />
+        </FormQuestionAccordion>
         {/* <label htmlFor="email">Email Address</label>
         <input
           id="email"
