@@ -1,10 +1,10 @@
 import * as React from 'react'
-import styled from '@emotion/styled'
+import styled from 'styled-components'
 
 type TextAreaProps = {
   className?: string
   label?: string
-  rows?: number | 6
+  rows?: number
 }
 
 const TextAreaComponent: React.FC<TextAreaProps> = ({
