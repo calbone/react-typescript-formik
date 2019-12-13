@@ -8,7 +8,6 @@ import { readQuestionnaires } from '../../stores/domain/form/actions/questionnai
 import Icon from '../../components/Icon'
 import PageHeader from '../../components/PageHeader'
 import Tag from '../../components/Tag'
-import FieldInputText from '../../components/TextField/TextField'
 
 const FormList: React.FC<MergeProps> = ({
   readQuestionnaires,
@@ -77,7 +76,6 @@ const FormList: React.FC<MergeProps> = ({
           </CreateForm>
         </Link>
         <FormList>
-          <FieldInputText />
           {questionnaires.map((question, i) => {
             return (
               <Link to={`/enquete/${question.id}/edit`} key={i}>

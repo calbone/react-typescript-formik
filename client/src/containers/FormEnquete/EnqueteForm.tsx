@@ -5,6 +5,7 @@ import FormLabel from '../../components/FormLabel'
 import { TextField, AddTextField } from '../../components/TextField'
 import TextArea from '../../components/TextArea'
 import SelectBox from '../../components/SelectBox'
+import CheckBox from '../../components/CheckBox'
 import RadioButton from '../../components/RadioButton'
 import ToggleButton from '../../components/ToggleButton'
 import Accordion from '../../components/Accordion'
@@ -126,6 +127,27 @@ const EnqueteForm = () => {
     font-weight: bold;
     cursor: pointer;
   `
+
+  const QuestionCheckBound = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    border-top: #b9b9b9 solid 1px;
+    padding-top: 18px;
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: #818181;
+      cursor: pointer;
+    }
+    .sortArea {
+      display: flex;
+      .c-sortIcon:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
+  `
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormQuestionBox>
@@ -160,6 +182,14 @@ const EnqueteForm = () => {
                 </TextFieldColumn>
                 <AddField>入力エリアを追加する</AddField>
               </FormGroup>
+              <QuestionCheckBound>
+                <Icon type="trash" />
+                <div className="sortArea">
+                  <span className="c-sortIcon c-sortIcon--up"></span>
+                  <span className="c-sortIcon c-sortIcon--down"></span>
+                </div>
+                <CheckBox label="必須" />
+              </QuestionCheckBound>
             </QuestionBox>
           </FormGroup>
         </div>
