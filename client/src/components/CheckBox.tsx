@@ -1,24 +1,32 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 type CheckBoxProps = {
   className?: string
   name?: string
   label?: string
-  value?: string
 }
-
 const CheckBoxComponent: React.FC<CheckBoxProps> = ({
   className,
   name,
-  label,
-  value
+  label
 }) => {
+  const [checked, setChecked] = useState(false)
+  const handleChangeChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked)
+  }
   return (
     <div className={className}>
       <div className="item">
-        <input type="checkbox" name={name} id={value} className="input" />
-        <label htmlFor={value} className="label">
+        <input
+          type="checkbox"
+          name={name}
+          id={name}
+          className="input"
+          checked={checked}
+          onChange={handleChangeChecked}
+        />
+        <label htmlFor={name} className="label">
           {label}
         </label>
       </div>

@@ -188,7 +188,7 @@ const EnqueteForm = () => {
                   <span className="c-sortIcon c-sortIcon--up"></span>
                   <span className="c-sortIcon c-sortIcon--down"></span>
                 </div>
-                <CheckBox label="必須" />
+                <CheckBox label="必須" name="required" />
               </QuestionCheckBound>
             </QuestionBox>
           </FormGroup>
