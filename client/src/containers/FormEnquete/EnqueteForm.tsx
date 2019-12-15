@@ -188,7 +188,7 @@ const EnqueteForm = () => {
                   <span className="c-sortIcon c-sortIcon--up"></span>
                   <span className="c-sortIcon c-sortIcon--down"></span>
                 </div>
-                <CheckBox label="必須" name="required" />
+                <CheckBox label="必須" name="required" value="required" />
               </QuestionCheckBound>
             </QuestionBox>
           </FormGroup>
@@ -200,6 +200,7 @@ const EnqueteForm = () => {
               label="無制限"
               name="answer_limit_status"
               value="unlimited"
+              defaultChecked
             />
             <RadioButton
               label="一回だけ"

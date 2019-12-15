@@ -2,26 +2,27 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 type RadioButtonProps = {
-  label: string
-  name: string
-  value?: string
   className?: string
+  name: string
+  value: string
+  label?: string
+  defaultChecked?: boolean
 }
-
-const RadioComponent: React.FC<RadioButtonProps> = ({
+const RadioButtonComponent: React.FC<RadioButtonProps> = ({
   className,
   label,
   name,
-  value
+  value,
+  defaultChecked
 }) => {
   return (
     <div className={className}>
       <input
         type="radio"
         name={name}
-        value={value}
         id={value}
         className="input"
+        defaultChecked={defaultChecked}
       />
       <label htmlFor={value} className="label">
         {label}
@@ -30,13 +31,29 @@ const RadioComponent: React.FC<RadioButtonProps> = ({
   )
 }
 
-const RadioButton = styled(RadioComponent)`
+const RadioButton = styled(RadioButtonComponent)`
   display: flex;
   flex-wrap: wrap;
   margin-right: 24px;
   margin-bottom: 16px;
   .input {
     display: none;
+    &:disabled + .label {
+      color: #b9b9b9;
+      cursor: not-allowed;
+      &::before {
+        border-color: #b9b9b9;
+        background-color: #f2f2f2;
+      }
+    }
+    &:checked + .label {
+      &::before {
+        border-color: #ff8e00;
+      }
+      &::after {
+        background-color: #ff8e00;
+      }
+    }
   }
   .label {
     display: inline-block;
@@ -59,7 +76,6 @@ const RadioButton = styled(RadioComponent)`
       height: 20px;
       border: 2px solid #818181;
       background-color: #fff;
-      border-color: #ff8e00;
       content: '';
     }
     &::after {
@@ -67,7 +83,7 @@ const RadioButton = styled(RadioComponent)`
       left: 5px;
       width: 10px;
       height: 10px;
-      background-color: #ff8e00;
+      background-color: transparent;
       content: '';
     }
   }
