@@ -27,6 +27,9 @@ const FormList: React.FC<MergeProps> = ({
     background-color: #fff;
     opacity: 1;
     transition: 0.2s;
+    a & {
+      color: #ff8e00;
+    }
     &:hover {
       opacity: 0.6;
     }
