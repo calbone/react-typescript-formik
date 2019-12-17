@@ -29,7 +29,7 @@ type IconProps = {
 }
 
 const Icon: React.FC<IconProps> = ({ type }) => {
-  let icon: JSX.Element
+  let icon: JSX.Element | null
 
   switch (type) {
     case 'search':
@@ -295,7 +295,7 @@ const Icon: React.FC<IconProps> = ({ type }) => {
       )
       break
     default:
-      icon = <div />
+      icon = null
   }
   return icon
 }

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { Questionnaire } from '../../stores/domain/form/type'
 import { readQuestionnaires } from '../../stores/domain/form/actions/questionnaires'
 import Icon from '../../components/Icon'
+import Content from '../../components/Content'
 import PageHeader from '../../components/PageHeader'
 import Tag from '../../components/Tag'
 
@@ -71,7 +72,7 @@ const FormList: React.FC<MergeProps> = ({
   return (
     <React.Fragment>
       <PageHeader label="フォーム一覧" />
-      <div className="l-content l-content--narrow">
+      <Content>
         <Link to="/enquete">
           <CreateForm>
             <Icon type="plus" />
@@ -96,7 +97,7 @@ const FormList: React.FC<MergeProps> = ({
             )
           })}
         </FormList>
-      </div>
+      </Content>
     </React.Fragment>
   )
 }

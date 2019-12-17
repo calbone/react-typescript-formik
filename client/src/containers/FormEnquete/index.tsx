@@ -6,6 +6,7 @@ import { readQuestionnaire } from '../../stores/domain/form/actions/questionnair
 import { readAnswerSummary } from '../../stores/domain/form/actions/answerSummary'
 import { Questionnaire, AnswerSummary } from '../../stores/domain/form/type'
 import Icon from '../../components/Icon'
+import Content from '../../components/Content'
 import PageHeader from '../../components/PageHeader'
 // import Modal from '../../components/Modal'
 // import SubModal from '../../components/SubModal'
@@ -108,7 +109,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
     return (
       <React.Fragment>
         <PageHeader label="フォーム詳細" />
-        <div className="l-content l-content--narrow">
+        <Content>
           {this.props.match.params.id && (
             <React.Fragment>
               <div className="p-formEnqueteHeader">
@@ -161,7 +162,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
             </React.Fragment>
           )}
           {this.content()}
-        </div>
+        </Content>
         {/* <Modal onHideModal={this.hideModal} show={this.state.isModal}>
           <div className="p-formEnqueteModal">
             <div className="p-formEnqueteModal__assist">
