@@ -20,18 +20,15 @@ const colors = {
   alertA: '#fb311a',
   alertB: '#ffe100',
   alertC: '#0063cc'
-}
+} as const
 
-const breakpoints = ['767', '768', '992', '1280']
+const breakpoints = ['767', '768', '992', '1280'] as const
+const margin = 8 as const
 
-interface StyleSetTheme {
-  colors: { [K in keyof typeof colors]: string }
-  breakpoints: string[]
-}
-
-const theme: StyleSetTheme = {
+const theme = {
   colors,
-  breakpoints
+  breakpoints,
+  margin
 }
 
 export { theme }

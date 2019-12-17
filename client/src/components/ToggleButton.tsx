@@ -35,7 +35,7 @@ const ToggleButton = styled(ToggleButtonComponent)`
     &:checked {
       + .label {
         padding: 0 28px 0 8px;
-        background-color: #ff8e00;
+        background-color: ${({ theme }) => theme.colors.accentA};
         &::before {
           content: attr(data-true-text);
         }
@@ -52,7 +52,7 @@ const ToggleButton = styled(ToggleButtonComponent)`
     height: 32px;
     padding: 0 8px 0 28px;
     border-radius: 16px;
-    background-color: #b9b9b9;
+    background-color: ${({ theme }) => theme.colors.mainD};
     color: #fff;
     font-weight: normal;
     font-size: 14px;
@@ -71,7 +71,7 @@ const ToggleButton = styled(ToggleButtonComponent)`
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: ${({ theme }) => theme.colors.baseC};
       content: '';
       transition: 0.3s;
     }

@@ -39,19 +39,19 @@ const RadioButton = styled(RadioButtonComponent)`
   .input {
     display: none;
     &:disabled + .label {
-      color: #b9b9b9;
+      color: ${({ theme }) => theme.colors.mainD};
       cursor: not-allowed;
       &::before {
-        border-color: #b9b9b9;
-        background-color: #f2f2f2;
+        border-color: ${({ theme }) => theme.colors.mainD};
+        background-color: ${({ theme }) => theme.colors.baseA};
       }
     }
     &:checked + .label {
       &::before {
-        border-color: #ff8e00;
+        border-color: ${({ theme }) => theme.colors.accentA};
       }
       &::after {
-        background-color: #ff8e00;
+        background-color: ${({ theme }) => theme.colors.accentA};
       }
     }
   }
@@ -74,8 +74,8 @@ const RadioButton = styled(RadioButtonComponent)`
       left: 0;
       width: 20px;
       height: 20px;
-      border: 2px solid #818181;
-      background-color: #fff;
+      border: 2px solid ${({ theme }) => theme.colors.mainC};
+      background-color: ${({ theme }) => theme.colors.baseC};
       content: '';
     }
     &::after {

@@ -38,16 +38,16 @@ const SelectBox = styled(SelectBoxComponent)`
     height: 0;
     border-width: 5px 5px 0;
     border-style: solid;
-    border-color: #818181 transparent transparent;
+    border-color: ${({ theme }) => theme.colors.mainC} transparent transparent;
     pointer-events: none;
     content: '';
   }
   select {
     width: 100%;
     padding: 8px 56px 8px 14px;
-    border: 1px solid #b9b9b9;
+    border: 1px solid ${({ theme }) => theme.colors.mainD};
     border-radius: 4px;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.baseC};
     line-height: 1.714;
   }
 `

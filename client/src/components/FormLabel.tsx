@@ -27,7 +27,7 @@ const FormLabel = styled(FormLabelComponent)`
   font-size: 12px;
   .require {
     margin-left: 0.5em;
-    color: #fb311a;
+    color: ${({ theme }) => theme.colors.alertA};
   }
 `
 

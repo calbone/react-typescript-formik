@@ -36,25 +36,23 @@ const CheckBoxComponent: React.FC<CheckBoxProps> = ({
 const CheckBox = styled(CheckBoxComponent)`
   display: flex;
   flex-wrap: wrap;
-  margin-right: 24px;
-  margin-bottom: 16px;
   .input {
     display: none;
     &:disabled + .label {
-      color: #b9b9b9;
+      color: ${({ theme }) => theme.colors.mainD};
       cursor: not-allowed;
       &::before {
-        border-color: #b9b9b9;
-        background-color: #f2f2f2;
+        border-color: ${({ theme }) => theme.colors.mainD};
+        background-color: ${({ theme }) => theme.colors.baseA};
       }
     }
     &:checked + .label {
       &::before {
-        border-color: #ff8e00;
-        background-color: #ff8e00;
+        border-color: ${({ theme }) => theme.colors.accentA};
+        background-color: ${({ theme }) => theme.colors.accentA};
       }
       &::after {
-        border-color: #fff;
+        border-color: ${({ theme }) => theme.colors.baseC};
       }
     }
   }
@@ -72,9 +70,9 @@ const CheckBox = styled(CheckBoxComponent)`
       left: 0;
       width: 20px;
       height: 20px;
-      border: 2px solid #818181;
+      border: 2px solid ${({ theme }) => theme.colors.mainC};
       border-radius: 4px;
-      background-color: #fff;
+      background-color: ${({ theme }) => theme.colors.baseC};
       content: '';
       transition: 0.2s;
     }

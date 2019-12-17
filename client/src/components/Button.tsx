@@ -21,7 +21,7 @@ const Button = styled(ButtonComponent)`
   width: ${props => props.width}px;
   transition: 0.2s;
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.colors.baseC};
   }
 `
 

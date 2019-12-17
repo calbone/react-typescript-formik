@@ -1,7 +1,31 @@
 import * as React from 'react'
 
 type IconProps = {
-  type: string
+  type:
+    | 'search'
+    | 'plus'
+    | 'pencil'
+    | 'heart'
+    | 'top'
+    | 'spotify'
+    | 'arrow'
+    | 'ticketList'
+    | 'close'
+    | 'trash'
+    | 'download'
+    | 'copy'
+    | 'calender'
+    | 'camera'
+    | 'dots'
+    | 'seat'
+    | 'lottery'
+    | 'check'
+    | 'disk'
+    | 'list'
+    | 'bell'
+    | 'warning'
+    | 'help'
+    | 'assignment'
 }
 
 const Icon: React.FC<IconProps> = ({ type }) => {

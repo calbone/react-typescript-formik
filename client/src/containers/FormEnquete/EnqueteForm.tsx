@@ -46,14 +46,14 @@ const EnqueteForm = () => {
   ]
   const FormQuestionBox = styled.div`
     border-radius: 2px;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.baseC};
     &:not(:last-child) {
       margin-bottom: 16px;
     }
     .part {
       padding: 16px;
       &:not(:last-child) {
-        border-bottom: #f2f2f2 solid 1px;
+        border-bottom: ${({ theme }) => theme.colors.baseA} solid 1px;
       }
     }
   `
@@ -65,9 +65,9 @@ const EnqueteForm = () => {
   const QuestionBox = styled.div`
     margin-top: 8px;
     padding: 16px 16px 24px;
-    border: 1px solid #f2f2f2;
+    border: 1px solid ${({ theme }) => theme.colors.baseA};
     border-radius: 6px;
-    background-color: #fafafa;
+    background-color: ${({ theme }) => theme.colors.baseB};
   `
   const FormQuestionAccordion = styled.div`
     padding: 16px;
@@ -86,7 +86,7 @@ const EnqueteForm = () => {
     svg {
       width: 24px;
       height: 24px;
-      fill: #818181;
+      fill: ${({ theme }) => theme.colors.mainC};
       min-width: 16px;
     }
     &:hover {
@@ -105,13 +105,13 @@ const EnqueteForm = () => {
       z-index: -1;
       border-radius: 2px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      background-color: rgba($color-base-c, 0.96);
+      background-color: ${({ theme }) => theme.colors.baseC};
       white-space: nowrap;
       cursor: pointer;
       transition: 0.3s;
     }
     li + li {
-      border-top: 1px solid $color-base-a;
+      border-top: 1px solid ${({ theme }) => theme.colors.baseA};
     }
     button {
       width: 100%;
@@ -123,7 +123,7 @@ const EnqueteForm = () => {
   `
   const AddField = styled.p`
     margin-top: 12px;
-    color: #ff8e00;
+    color: ${({ theme }) => theme.colors.accentA};
     font-weight: bold;
     cursor: pointer;
   `
@@ -133,12 +133,12 @@ const EnqueteForm = () => {
     justify-content: space-between;
     align-items: center;
     margin-top: 30px;
-    border-top: #b9b9b9 solid 1px;
+    border-top: ${({ theme }) => theme.colors.mainD} solid 1px;
     padding-top: 18px;
     svg {
       width: 24px;
       height: 24px;
-      fill: #818181;
+      fill: ${({ theme }) => theme.colors.mainC};
       cursor: pointer;
     }
     .sortArea {

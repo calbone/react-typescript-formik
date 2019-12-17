@@ -68,8 +68,8 @@ const Accordion = styled(AccordionComponent)`
       width: 8px;
       height: 8px;
       margin-top: -4px;
-      border-top: 2px solid #818181;
-      border-right: 2px solid #818181;
+      border-top: 2px solid ${({ theme }) => theme.colors.mainC};
+      border-right: 2px solid ${({ theme }) => theme.colors.mainC};
       content: '';
       transition: transform 0.3s;
     }

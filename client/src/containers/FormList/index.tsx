@@ -24,11 +24,11 @@ const FormList: React.FC<MergeProps> = ({
     font-weight: bold;
     font-size: 16px;
     border-radius: 2px;
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.baseC};
     opacity: 1;
     transition: 0.2s;
     a & {
-      color: #ff8e00;
+      color: ${({ theme }) => theme.colors.accentA};
     }
     &:hover {
       opacity: 0.6;
@@ -37,7 +37,7 @@ const FormList: React.FC<MergeProps> = ({
       width: 14px;
       height: 14px;
       margin-right: 14px;
-      fill: #ff8e00;
+      fill: ${({ theme }) => theme.colors.accentA};
     }
   `
   const FormList = styled.div`
@@ -45,13 +45,13 @@ const FormList: React.FC<MergeProps> = ({
   `
   const FormListItem = styled.div`
     padding: 16px 48px 16px 16px;
-    border-top: 1px solid #f2f2f2;
+    border-top: 1px solid ${({ theme }) => theme.colors.baseA};
     background: #fff;
   `
   const FormListName = styled.p`
     font-weight: bold;
     a & {
-      color: #111;
+      color: ${({ theme }) => theme.colors.mainA};
     }
   `
   const FormListStatus = styled.div`
@@ -59,7 +59,7 @@ const FormList: React.FC<MergeProps> = ({
     align-items: center;
     margin-top: 12px;
     font-size: 12px;
-    color: #818181;
+    color: ${({ theme }) => theme.colors.mainC};
   `
   const FormListEmphasis = styled.span`
     display: flex;

@@ -32,7 +32,7 @@ const PageHeaderReturn = styled(Link)`
   top: 50%;
   left: 16px;
   transform: translateY(-50%);
-  color: #818181;
+  color: ${({ theme }) => theme.colors.mainC};
   font-weight: bold;
   font-size: 12px;
   padding-left: 16px;
@@ -42,7 +42,7 @@ const PageHeaderReturn = styled(Link)`
     left: 0;
     transform: translateY(-50%) rotate(180deg);
     height: 10px;
-    fill: #818181;
+    fill: ${({ theme }) => theme.colors.mainC};
   }
 `
 const PageHeaderTitle = styled.h2`

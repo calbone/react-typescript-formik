@@ -3,50 +3,10 @@
   margin-bottom: 32px;
   padding-right: 32px;
   padding-left: 32px;
-  &--multi {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  &__main,
-  &__side {
-    flex: 0 0 100%;
+  &--narrow {
+    width: 784px;
     max-width: 100%;
-  }
-  &__side {
-    margin-top: 32px;
-  }
-  @include mq() {
-    &--narrow {
-      width: 784px;
-      max-width: 100%;
-      margin-right: auto;
-      margin-left: auto;
-    }
-  }
-  @include mq(xs) {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-right: 0;
-    padding-left: 0;
-    &:not(:first-child) {
-      margin-top: 32px;
-    }
-  }
-  @include mq(xl) {
-    &__main {
-      flex: 0 0 calc( 100% - 416px );
-      max-width: calc( 100% - 416px );
-    }
-    &__side {
-      flex: 0 0 400px;
-      margin-top: 0;
-      &--fixed {
-        position: sticky;
-        top: 80px;
-        right: 0;
-      }
-    }
+    margin-right: auto;
+    margin-left: auto;
   }
 }
