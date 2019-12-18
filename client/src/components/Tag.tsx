@@ -8,25 +8,27 @@ interface TagProps {
 const TagWrapper = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
-  margin-top: -12px;
-  margin-right: -12px;
 `
-const TagInner = styled.div`
-  margin-top: 12px;
-  margin-right: 12px;
+const TagInner = styled.div<TagProps>`
   padding: 6px;
   font-size: 12px;
   line-height: 1;
   border: 1px solid;
   background-color: transparent;
-  color: ${props => (props ? '#00cc4b' : '#111')};
-  border-color: ${props => (props ? '#00cc4b' : '#b9b9b9')};
+  color: ${({ status }) =>
+    status
+      ? ({ theme }) => theme.colors.accentC
+      : ({ theme }) => theme.colors.mainD};
+  border-color: ${({ status }) =>
+    status
+      ? ({ theme }) => theme.colors.accentC
+      : ({ theme }) => theme.colors.mainD};
 `
 
 const Tag: React.FC<TagProps> = ({ status }) => {
   return (
     <TagWrapper>
-      <TagInner>{status ? '公開中' : '非公開'}</TagInner>
+      <TagInner status={status}>{status ? '公開中' : '非公開'}</TagInner>
     </TagWrapper>
   )
 }
