@@ -175,7 +175,7 @@ const EnqueteForm = () => {
                     <Icon type="dots" />
                     <ul className="popMenu__select">
                       <li>
-                        <button>削除</button>
+                        <button type="button">削除</button>
                       </li>
                     </ul>
                   </PopMenu>
@@ -185,8 +185,8 @@ const EnqueteForm = () => {
               <QuestionCheckBound>
                 <Icon type="trash" />
                 <div className="sortArea">
-                  <span className="c-sortIcon c-sortIcon--up"></span>
-                  <span className="c-sortIcon c-sortIcon--down"></span>
+                  <span className="c-sortIcon c-sortIcon--up" />
+                  <span className="c-sortIcon c-sortIcon--down" />
                 </div>
                 <CheckBox label="必須" name="required" value="required" />
               </QuestionCheckBound>

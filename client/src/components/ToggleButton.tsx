@@ -22,7 +22,7 @@ const ToggleButtonComponent: React.FC<ToggleButtonProps> = ({
         className="label"
         data-true-text={labelOn}
         data-false-text={labelOff}
-      ></label>
+      />
     </div>
   )
 }

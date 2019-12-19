@@ -1,4 +1,5 @@
 import { AnswerSummary } from '../type'
+
 export const READ_ANSWER_SUMMARY = 'READ_ANSWER_SUMMARY' as const
 export const READ_ANSWER_SUMMARY_SUCCESS = 'READ_ANSWER_SUMMARY_SUCCESS' as const
 export const READ_ANSWER_SUMMARY_FAILURE = 'READ_ANSWER_SUMMARY_FAILURE' as const

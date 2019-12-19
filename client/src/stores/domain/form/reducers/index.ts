@@ -4,8 +4,8 @@ import { answerSummary } from './answerSummary'
 
 const rootReducer = () =>
   combineReducers({
-    questionnaires: questionnaires,
-    answerSummary: answerSummary
+    questionnaires,
+    answerSummary
   })
 
 export default rootReducer

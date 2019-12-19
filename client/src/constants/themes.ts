@@ -25,10 +25,10 @@ const colors = {
 const breakpoints = ['767', '768', '992', '1280'] as const
 const margin = 8 as const
 
-const theme = {
+const themes = {
   colors,
   breakpoints,
   margin
 }
 
-export { theme }
+export { themes }

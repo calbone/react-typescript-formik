@@ -41,7 +41,7 @@ const FormList: React.FC<MergeProps> = ({
       fill: ${({ theme }) => theme.colors.accentA};
     }
   `
-  const FormList = styled.div`
+  const FormListWrapper = styled.div`
     margin-top: 16px;
   `
   const FormListItem = styled.div`
@@ -79,10 +79,10 @@ const FormList: React.FC<MergeProps> = ({
             フォームを新規作成
           </CreateForm>
         </Link>
-        <FormList>
-          {questionnaires.map((question, i) => {
+        <FormListWrapper>
+          {questionnaires.map(question => {
             return (
-              <Link to={`/enquete/${question.id}/edit`} key={i}>
+              <Link to={`/enquete/${question.id}/edit`} key={question.id}>
                 <FormListItem>
                   <FormListName>{question.title}</FormListName>
                   <FormListStatus>
@@ -96,7 +96,7 @@ const FormList: React.FC<MergeProps> = ({
               </Link>
             )
           })}
-        </FormList>
+        </FormListWrapper>
       </Content>
     </React.Fragment>
   )

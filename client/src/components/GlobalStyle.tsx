@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
-import { theme } from '../constants/theme'
+import { themes } from '../constants/themes'
 
-type ThemeType = typeof theme
+type ThemeType = typeof themes
 
 const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
   * {

@@ -1,4 +1,5 @@
 import { Questionnaire } from '../type'
+
 export const READ_QUESTIONNAIRES = 'READ_QUESTIONNAIRES' as const
 export const READ_QUESTIONNAIRES_SUCCESS = 'READ_QUESTIONNAIRES_SUCCESS' as const
 export const READ_QUESTIONNAIRES_FAILURE = 'READ_QUESTIONNAIRES_FAILURE' as const
