@@ -1,10 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-
-interface AccordionState {
-  isOpen: boolean
-  height: number
-}
 
 interface AccordionProps {
   title: string
@@ -12,49 +7,35 @@ interface AccordionProps {
   className?: string
 }
 
-class AccordionComponent extends React.Component<
-  AccordionProps,
-  AccordionState
-> {
-  constructor(props: AccordionProps) {
-    super(props)
-    this.state = {
-      isOpen: false,
-      height: 0
-    }
-  }
-  contentRef = React.createRef<HTMLDivElement>()
-
-  toggle = () => {
-    this.setState({ isOpen: !this.state.isOpen })
-  }
-  componentDidMount() {
-    if (this.contentRef.current) {
-      this.setState({ height: this.contentRef.current.offsetHeight })
-    }
+const AccordionComponent: React.FC<AccordionProps> = ({
+  title,
+  content,
+  className
+}) => {
+  const [isOpen, setOpen] = useState<boolean>(false)
+  const [contentHeight, setHeight] = useState<number | undefined>(0)
+  const contentRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    setHeight(contentRef.current?.offsetHeight)
+  }, [])
+  const toggle = () => {
+    setOpen(prev => !prev)
   }
 
-  render() {
-    const { title, content, className } = this.props
-
-    return (
-      <div className={className}>
-        <div className={`${this.state.isOpen ? 'is-open' : ''}`}>
-          <div className="title" onClick={this.toggle}>
-            {title}
-          </div>
-          <div
-            className="content"
-            style={{ height: this.state.isOpen ? this.state.height : 0 }}
-          >
-            <div className="inner" ref={this.contentRef}>
-              {content}
-            </div>
+  return (
+    <div className={className}>
+      <div className={`${isOpen ? 'is-open' : ''}`}>
+        <div className="title" onClick={toggle}>
+          {title}
+        </div>
+        <div className="content" style={{ height: isOpen ? contentHeight : 0 }}>
+          <div className="inner" ref={contentRef}>
+            {content}
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 const Accordion = styled(AccordionComponent)`
@@ -84,6 +65,9 @@ const Accordion = styled(AccordionComponent)`
   }
 
   .is-open {
+    .title {
+      margin-bottom: 33px;
+    }
     .inner {
       visibility: visible;
     }
