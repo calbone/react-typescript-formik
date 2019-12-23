@@ -140,6 +140,46 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
         }
       }
     `
+    const Tab = styled.ul`
+      display: flex;
+      align-items: stretch;
+      margin-bottom: 16px;
+      &:not(:first-child) {
+        margin-top: 32px;
+      }
+      .item {
+        flex: 0 0 50%;
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          width: 100%;
+          padding: 17px 10px;
+          background-color: ${({ theme }) => theme.colors.baseC};
+          font-weight: bold;
+          font-size: 14px;
+          line-height: 1;
+          transition: 0.2s;
+          &::before {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: transparent;
+            content: '';
+          }
+          &.is-current {
+            color:${({ theme }) => theme.colors.accentA}
+            &::before {
+              height: 4px;
+              background-color:${({ theme }) => theme.colors.accentA}
+            }
+          }
+        }
+      }
+    `
     return (
       <React.Fragment>
         <PageHeader label="フォーム詳細" />
@@ -159,9 +199,8 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
                   </li>
                 </ul>
               </EnqueteHeader>
-
-              <ul className="c-tabA">
-                <li className="c-tabA__item">
+              <Tab>
+                <li className="item">
                   <button
                     className={
                       this.state.selectedTabName === 'edit' ? 'is-current' : ''
@@ -172,7 +211,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
                     編集
                   </button>
                 </li>
-                <li className="c-tabA__item">
+                <li className="item">
                   <button
                     className={
                       this.state.selectedTabName === 'answer'
@@ -185,7 +224,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
                     回答
                   </button>
                 </li>
-              </ul>
+              </Tab>
             </React.Fragment>
           )}
           {this.content()}
