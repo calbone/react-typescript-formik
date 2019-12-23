@@ -9,7 +9,7 @@ import { Questionnaire, AnswerSummary } from '../../stores/domain/form/type'
 import Icon from '../../components/Icon'
 import Content from '../../components/Content'
 import PageHeader from '../../components/PageHeader'
-// import Modal from '../../components/Modal'
+import { Modal } from '../../components/Modal'
 // import SubModal from '../../components/SubModal'
 import EnqueteForm from './EnqueteForm'
 // import EnqueteResult from './EnqueteResult'
@@ -229,7 +229,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
           )}
           {this.content()}
         </Content>
-        {/* <Modal onHideModal={this.hideModal} show={this.state.isModal}>
+        <Modal onHideModal={this.hideModal} show={this.state.isModal}>
           <div className="p-formEnqueteModal">
             <div className="p-formEnqueteModal__assist">
               <Icon type="help" />
@@ -256,6 +256,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
             </div>
           </div>
         </Modal>
+        {/* 
         <SubModal
           onHideSubModal={this.hideSubModal}
           show={this.state.isSubModal}
