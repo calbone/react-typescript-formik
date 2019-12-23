@@ -2,6 +2,7 @@ import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
+import styled from 'styled-components'
 import { readQuestionnaire } from '../../stores/domain/form/actions/questionnaires'
 import { readAnswerSummary } from '../../stores/domain/form/actions/answerSummary'
 import { Questionnaire, AnswerSummary } from '../../stores/domain/form/type'
@@ -106,33 +107,59 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
     // }
   }
   render() {
+    const EnqueteHeader = styled.div`
+      border-radius: 2px;
+      background-color: ${({ theme }) => theme.colors.baseC};
+      .title {
+        padding: 16px;
+        font-weight: bold;
+        border-bottom: ${({ theme }) => theme.colors.baseA} solid 1px;
+      }
+      .support {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 24px;
+        padding-top: 12px;
+        padding-bottom: 14px;
+        .assist {
+          display: flex;
+          align-items: center;
+          font-weight: bold;
+          cursor: pointer;
+          &:first-child {
+            border-right: 1px solid ${({ theme }) => theme.colors.baseA};
+            margin-right: 24px;
+            padding-right: 24px;
+          }
+          svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            fill: ${({ theme }) => theme.colors.mainC};
+          }
+        }
+      }
+    `
     return (
       <React.Fragment>
         <PageHeader label="フォーム詳細" />
         <Content>
           {this.props.match.params.id && (
             <React.Fragment>
-              <div className="p-formEnqueteHeader">
-                <div className="p-formEnqueteHeader__title">
-                  {this.props.questionnaire.title}
-                </div>
-                <ul className="p-formEnqueteHeader__support">
-                  <li
-                    className="p-formEnqueteHeader__assist"
-                    onClick={this.showModal}
-                  >
+              <EnqueteHeader>
+                <div className="title">{this.props.questionnaire.title}</div>
+                <ul className="support">
+                  <li className="assist" onClick={this.showModal}>
                     <Icon type="help" />
                     共有方法
                   </li>
-                  <li
-                    className="p-formEnqueteHeader__assist"
-                    onClick={this.handleCopyUrl}
-                  >
+                  <li className="assist" onClick={this.handleCopyUrl}>
                     <Icon type="assignment" />
                     URLをコピー
                   </li>
                 </ul>
-              </div>
+              </EnqueteHeader>
+
               <ul className="c-tabA">
                 <li className="c-tabA__item">
                   <button
