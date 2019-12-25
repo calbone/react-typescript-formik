@@ -9,8 +9,7 @@ import { Questionnaire, AnswerSummary } from '../../stores/domain/form/type'
 import Icon from '../../components/Icon'
 import Content from '../../components/Content'
 import PageHeader from '../../components/PageHeader'
-import { Modal } from '../../components/Modal'
-// import SubModal from '../../components/SubModal'
+import { Modal, SubModal } from '../../components/Modal'
 import EnqueteForm from './EnqueteForm'
 // import EnqueteResult from './EnqueteResult'
 
@@ -180,6 +179,39 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
         }
       }
     `
+    const EnqueteModal = styled.div`
+      .assist {
+        display: flex;
+        align-items: center;
+        padding: 0 16px;
+        font-weight: bold;
+        cursor: pointer;
+        svg {
+          width: 24px;
+          height: 24px;
+          margin-right: 8px;
+          fill: ${({ theme }) => theme.colors.mainC};
+        }
+      }
+      .sharingList {
+        margin-top: 16px;
+        a {
+          font-weight: bold;
+        }
+      }
+      .sharingItem {
+        margin-bottom: 16px;
+        font-weight: bold;
+      }
+      .sharingExplan {
+        border-top: 1px solid ${({ theme }) => theme.colors.baseA};
+        margin-top: 20px;
+        padding: 16px 16px 0;
+        p {
+          margin-bottom: ${({ theme }) => theme.margin * 2}px;
+        }
+      }
+    `
     return (
       <React.Fragment>
         <PageHeader label="フォーム詳細" />
@@ -230,38 +262,30 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
           {this.content()}
         </Content>
         <Modal onHideModal={this.hideModal} show={this.state.isModal}>
-          <div className="p-formEnqueteModal">
-            <div className="p-formEnqueteModal__assist">
+          <EnqueteModal>
+            <div className="assist">
               <Icon type="help" />
               フォームの共有方法
             </div>
-            <div className="p-formEnqueteModal__sharingExplan">
+            <div className="sharingExplan">
               <p>
                 作成したフォームはURLをコピーして貼り付けることで共有できます。
               </p>
               <p>共有方法は2通りあります。</p>
-              <div className="p-formEnqueteModal__sharingList">
-                <p className="p-formEnqueteModal__sharingItem">
-                  1.URLをコピーして記事内に埋め込む
-                </p>
-                <span className="p-formEnqueteModal__sharingItem">
+              <div className="sharingList">
+                <p className="sharingItem">1.URLをコピーして記事内に埋め込む</p>
+                <span className="sharingItem">
                   2.サイトのメニューにリンクを追加する
                 </span>
                 <br />
                 メニュー管理 &gt; メニューを追加する &gt;
                 リンクから設定できます。
-                <br />
-                設定は<a href="/club/dashboard/menu_links/new">こちら</a>
               </div>
             </div>
-          </div>
+          </EnqueteModal>
         </Modal>
-        {/* 
-        <SubModal
-          onHideSubModal={this.hideSubModal}
-          show={this.state.isSubModal}
-        >
-          <div className="p-subModal__icon">
+        <SubModal show={this.state.isSubModal}>
+          <div className="icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
               <defs>
                 <linearGradient
@@ -295,7 +319,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
             </svg>
           </div>
           <div className="p-subModal__emphasis">{this.state.copyText}</div>
-        </SubModal> */}
+        </SubModal>
       </React.Fragment>
     )
   }

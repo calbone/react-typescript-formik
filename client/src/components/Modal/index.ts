@@ -1,3 +1,4 @@
 import Modal from './Modal'
+import SubModal from './SubModal'
 
-export { Modal }
+export { Modal, SubModal }

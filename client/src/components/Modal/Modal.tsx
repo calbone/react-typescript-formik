@@ -46,7 +46,7 @@ const styledModal = styled(ModalComponent)`
       width: 24px;
     }
     path {
-      fill: $color-main-c;
+      fill: ${({ theme }) => theme.colors.mainC};
     }
   }
 `
