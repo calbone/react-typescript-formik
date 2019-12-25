@@ -29,6 +29,14 @@ const styledSubModal = styled(SubModalComponent)`
     width: 48px;
     margin: 0 auto 24px;
   }
+  .inner {
+    width: 288px;
+  }
+  .emphasis {
+    margin-bottom: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
 `
 
 export default styledSubModal

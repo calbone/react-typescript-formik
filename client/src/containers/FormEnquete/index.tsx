@@ -318,7 +318,7 @@ class FormEnquete extends React.Component<MergeProps, LocalState> {
               </g>
             </svg>
           </div>
-          <div className="p-subModal__emphasis">{this.state.copyText}</div>
+          <div className="emphasis">{this.state.copyText}</div>
         </SubModal>
       </React.Fragment>
     )
