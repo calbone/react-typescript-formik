@@ -44,7 +44,7 @@ const FormEnquete: React.FC<MergeProps> = ({
   useEffect(() => {
     readQuestionnaire(match.params.id)
     readAnswerSummary(match.params.id)
-  }, [])
+  }, [readQuestionnaire, readAnswerSummary, match.params.id])
 
   const handleChangeTab = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>

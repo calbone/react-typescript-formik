@@ -14,7 +14,7 @@ const AccordionComponent: React.FC<AccordionProps> = ({
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [contentHeight, setHeight] = useState<number | undefined>(0)
-  const contentRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
   useEffect(() => {
     setHeight(contentRef.current?.offsetHeight)
   }, [])
