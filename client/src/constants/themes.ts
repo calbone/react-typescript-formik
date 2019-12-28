@@ -31,4 +31,13 @@ const themes = {
   margin
 }
 
+interface Themes {
+  colors: typeof colors
+  breakpoints: typeof breakpoints
+  margin: typeof margin
+}
+declare module 'styled-components' {
+  interface DefaultTheme extends Themes {}
+}
+
 export { themes }
