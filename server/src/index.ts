@@ -1,4 +1,5 @@
 import Express from "express";
+import cors from "cors";
 // import uuidv4 from "uuid/v4";
 import { Questionnaire } from "./type";
 
@@ -7,6 +8,8 @@ const app = Express();
 // リクエスト解析(body-parser)
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
+// cors対応
+app.use(cors());
 
 const response: Questionnaire[] = [
   {

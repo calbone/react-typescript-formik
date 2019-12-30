@@ -10,8 +10,10 @@
     "typescript": "^3.7.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
     "@types/uuid": "^3.4.6",
+    "cors": "^2.8.5",
     "ts-node-dev": "^1.0.0-pre.44",
     "uuid": "^3.3.3"
   }
