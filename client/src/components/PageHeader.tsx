@@ -5,12 +5,13 @@ import Icon from './Icon'
 
 type PageHeaderProps = {
   label: string
+  to?: string
 }
 
-const PageHeaderComponent: React.FC<PageHeaderProps> = ({ label }) => {
+const PageHeaderComponent: React.FC<PageHeaderProps> = ({ label, to }) => {
   return (
     <PageHeader>
-      <PageHeaderReturn to="/">
+      <PageHeaderReturn to={to || '/'}>
         <Icon type="arrow" />
         戻る
       </PageHeaderReturn>

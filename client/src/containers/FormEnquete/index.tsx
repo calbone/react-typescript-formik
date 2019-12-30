@@ -42,8 +42,10 @@ const FormEnquete: React.FC<MergeProps> = ({
   const [tabName, setTabName] = useState('edit')
   const [copyText, setCopyText] = useState('')
   useEffect(() => {
-    readQuestionnaire(match.params.id)
-    readAnswerSummary(match.params.id)
+    if (match.params.id) {
+      readQuestionnaire(match.params.id)
+      readAnswerSummary(match.params.id)
+    }
   }, [readQuestionnaire, readAnswerSummary, match.params.id])
 
   const handleChangeTab = (
