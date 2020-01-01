@@ -9,7 +9,7 @@ import CheckBox from '../../components/CheckBox'
 import RadioButton from '../../components/RadioButton'
 import ToggleButton from '../../components/ToggleButton'
 import Accordion from '../../components/Accordion'
-import { SubmitButton } from '../../components/Button'
+import { Button } from '../../components/Button'
 // import { connect } from "react-redux";
 // import { push } from "connected-react-router";
 // import SubModal from "../../components/SubModal";
@@ -238,7 +238,7 @@ const EnqueteForm = () => {
           </FormGroup>
         </div>
         <ButtonContainer>
-          <SubmitButton label="登録する" />
+          <Button valid={false} type="submit" label="登録する" />
         </ButtonContainer>
       </FormQuestionBox>
     </form>
