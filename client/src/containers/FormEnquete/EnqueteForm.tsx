@@ -9,12 +9,12 @@ import CheckBox from '../../components/CheckBox'
 import RadioButton from '../../components/RadioButton'
 import ToggleButton from '../../components/ToggleButton'
 import Accordion from '../../components/Accordion'
+import { SubmitButton } from '../../components/Button'
 // import { connect } from "react-redux";
 // import { push } from "connected-react-router";
 // import SubModal from "../../components/SubModal";
 // import DateCalendar from "../../components/DateCalendar";
 import Icon from '../../components/Icon'
-// import Accordion from "../../components/Accordion";
 // import {
 //   clearQuestionnaires,
 //   createQuestionnaires,
@@ -148,6 +148,10 @@ const EnqueteForm = () => {
       }
     }
   `
+  const ButtonContainer = styled.div`
+    text-align: center;
+    padding: 32px 0;
+  `
   return (
     <form onSubmit={formik.handleSubmit}>
       <FormQuestionBox>
@@ -233,6 +237,9 @@ const EnqueteForm = () => {
             <SelectBox items={disclosureTypes} />
           </FormGroup>
         </div>
+        <ButtonContainer>
+          <SubmitButton label="登録する" />
+        </ButtonContainer>
       </FormQuestionBox>
     </form>
   )
