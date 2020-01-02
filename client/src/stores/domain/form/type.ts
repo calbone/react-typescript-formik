@@ -14,11 +14,11 @@ export interface AnswerSummaryState {
 
 // mapStateToPropsのinterface
 export interface Questionnaire {
-  id: number
-  user_id: number
-  title: string
-  body: string
-  disclosure_scope: 'all' | 'follower'
+  id?: number
+  user_id?: number
+  title?: string
+  body?: string
+  disclosure_scope?: 'all' | 'follower'
   show_status: boolean
   show_start_datetime: Date
   show_end_datetime: Date
@@ -28,15 +28,14 @@ export interface Questionnaire {
       {
         choices?: [
           {
-            choice_uuid: string
-            choice_title: string
+            choice_uuid?: string | null
+            choice_title?: string | null
           }
         ]
-        required: boolean
-        sort_order: number
-        question_type: 'textbox' | 'selectbox' | 'radio' | 'textbox'
-        question_uuid: string
-        question_title: string
+        required?: boolean
+        question_type?: 'textbox' | 'selectbox' | 'radio' | 'textbox' | null
+        question_uuid?: string | null
+        question_title?: string | null
       }
     ]
   }
