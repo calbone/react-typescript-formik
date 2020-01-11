@@ -7,7 +7,7 @@ setConsoleOptions({
   panelExclude: []
 })
 
-const req = require.context('../src/stories', true, /.(story|stories).tsx$/)
+const req = require.context('../src/stories', true, /\.(story|stories)\.tsx$/)
 const loadStories = () => {
   addDecorator(withKnobs)
   addDecorator(withInfo)
