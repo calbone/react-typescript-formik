@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
-import { Questionnaire } from '../../stores/domain/form/type'
+// import { Questionnaire } from '../../stores/domain/form/type'
 import FormLabel from '../../components/FormLabel'
 import { TextField, AddTextField } from '../../components/TextField'
 import TextArea from '../../components/TextArea'
@@ -21,9 +21,9 @@ import Icon from '../../components/Icon'
 //   createQuestionnaires,
 //   updateQuestionnaires
 // } from "../../actions/questionnaires";
-const EnqueteForm: React.FC<Questionnaire> = ({ initialValues }) => {
+const EnqueteForm: React.FC<{}> = () => {
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: { email: 'hoge' },
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2))
     }
@@ -236,7 +236,7 @@ const EnqueteForm: React.FC<Questionnaire> = ({ initialValues }) => {
           </FormGroup>
         </div>
         <ButtonContainer>
-          <Button valid={false} type="submit" label="登録する" />
+          <Button valid={true} type="submit" label="登録する" />
         </ButtonContainer>
       </FormQuestionBox>
     </form>
