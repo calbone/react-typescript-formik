@@ -1,16 +1,24 @@
+import * as React from 'react'
 import { configure, addDecorator } from '@storybook/react'
 import { withInfo } from '@storybook/addon-info'
 import { withKnobs } from '@storybook/addon-knobs'
 import { setConsoleOptions } from '@storybook/addon-console'
+import { themes } from '../src/constants/themes'
+import { ThemeProvider } from 'styled-components'
 
 setConsoleOptions({
   panelExclude: []
 })
 
-const req = require.context('../src/stories', true, /\.(story|stories)\.tsx$/)
+const req = require.context(
+  '../src/components',
+  true,
+  /\.(story|stories)\.tsx$/
+)
 const loadStories = () => {
   addDecorator(withKnobs)
   addDecorator(withInfo)
+  addDecorator(story => <ThemeProvider theme={themes}>{story()}</ThemeProvider>)
   req.keys().forEach(filename => req(filename))
 }
 
