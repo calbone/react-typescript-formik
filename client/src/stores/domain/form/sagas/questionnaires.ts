@@ -18,7 +18,7 @@ import {
 export function* handleReadQuestionnairesRequest() {
   try {
     const res = yield call(readQuestionnairesRequest)
-    yield put(actions.readQuestionnairesSuccess(res.data))
+    yield put(actions.readQuestionnairesSuccess(res))
   } catch (err) {
     yield put(actions.readQuestionnairesFailure(err))
     console.error(err)

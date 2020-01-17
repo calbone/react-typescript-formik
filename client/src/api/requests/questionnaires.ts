@@ -1,13 +1,18 @@
 import request from '../'
+import { Questionnaire } from '../../stores/domain/form/type'
 // export const createQuestionnairesRequest = async payload => {
 //   const url = "/api/v2/current_user/owner/questionnaires";
 //   const data = await request.post(url, payload);
 //   return data;
 // };
 
-export const readQuestionnairesRequest = async (): Promise<object> => {
+interface QuestionnaireResponse {
+  data: Questionnaire
+}
+
+export const readQuestionnairesRequest = async () => {
   const url = '/api/v2/current_user/owner/questionnaires'
-  const data = await request.get(url)
+  const { data } = await request.get<QuestionnaireResponse[]>(url)
   return data
 }
 
