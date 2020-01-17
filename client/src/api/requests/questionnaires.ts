@@ -7,12 +7,12 @@ import { Questionnaire } from '../../stores/domain/form/type'
 // };
 
 interface QuestionnaireResponse {
-  data: Questionnaire
+  data: Questionnaire[]
 }
 
 export const readQuestionnairesRequest = async () => {
   const url = '/api/v2/current_user/owner/questionnaires'
-  const { data } = await request.get<QuestionnaireResponse[]>(url)
+  const { data } = await request.get<QuestionnaireResponse>(url)
   return data
 }
 
