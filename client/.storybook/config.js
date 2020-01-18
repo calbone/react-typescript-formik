@@ -5,15 +5,16 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { setConsoleOptions } from '@storybook/addon-console'
 import { themes } from '../src/constants/themes'
 import { ThemeProvider } from 'styled-components'
+import requireContext from 'require-context.macro'
 
 setConsoleOptions({
   panelExclude: []
 })
 
-const req = require.context(
+const req = requireContext(
   '../src/components',
   true,
-  /\.(story|stories)\.tsx$/
+  /\.(story|stories)\.tsx?$/
 )
 const loadStories = () => {
   addDecorator(withKnobs)
