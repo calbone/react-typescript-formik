@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
-// import { Questionnaire } from '../../stores/domain/form/type'
+import { Questionnaire } from '../../stores/domain/form/type'
 import FormLabel from '../../components/FormLabel'
 import { TextField, AddTextField } from '../../components/TextField'
 import TextArea from '../../components/TextArea'
@@ -21,9 +21,12 @@ import Icon from '../../components/Icon'
 //   createQuestionnaires,
 //   updateQuestionnaires
 // } from "../../actions/questionnaires";
-const EnqueteForm: React.FC<{}> = () => {
+type InitialValuesProps = {
+  initialValues: Questionnaire
+}
+const EnqueteForm: React.FC<InitialValuesProps> = ({ initialValues }) => {
   const formik = useFormik({
-    initialValues: { email: 'hoge' },
+    initialValues,
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2))
     }
