@@ -11,7 +11,7 @@ import Content from '../../components/Content'
 import PageHeader from '../../components/PageHeader'
 import { Modal, SubModal } from '../../components/Modal'
 import EnqueteForm from './EnqueteForm'
-// import EnqueteResult from './EnqueteResult'
+import EnqueteResult from './EnqueteResult'
 
 interface DispathProps {
   readQuestionnaire: (id: string) => void
@@ -109,14 +109,12 @@ const FormEnquete: React.FC<MergeProps> = ({
   const TargetContent = () => {
     if (tabName === 'edit') {
       return <EnqueteForm initialValues={initialValues} />
+    } else if (tabName === 'answer') {
+      return <EnqueteResult answerSummary={answerSummary} />
     }
     return null
   }
-  // } else
-  // if (tabName === 'answer') {
-  //   return <EnqueteResult answerSummary={answerSummary} />
-  // }
-  // }
+
   const EnqueteHeader = styled.div`
     border-radius: 2px;
     background-color: ${({ theme }) => theme.colors.baseC};
