@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { AnswerSummary } from '../../stores/domain/form/type'
-import { commaSeparated } from '../../utils/commaSeparated'
-import Icon from '../../components/Icon'
+import { AnswerSummary } from 'stores/domain/form/type'
+import { commaSeparated } from 'utils/commaSeparated'
+import Icon from 'components/Icon'
 
 type AnswerSummaryProps = {
   answerSummary: AnswerSummary

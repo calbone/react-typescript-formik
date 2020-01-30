@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import styled from 'styled-components'
-import { Questionnaire } from '../../stores/domain/form/type'
-import { readQuestionnaires } from '../../stores/domain/form/actions/questionnaires'
-import Icon from '../../components/Icon'
-import Content from '../../components/Content'
-import PageHeader from '../../components/PageHeader'
-import Tag from '../../components/Tag'
+import { Questionnaire } from 'stores/domain/form/type'
+import { readQuestionnaires } from 'stores/domain/form/actions/questionnaires'
+import Icon from 'components/Icon'
+import Content from 'components/Content'
+import PageHeader from 'components/PageHeader'
+import Tag from 'components/Tag'
 
 const FormList: React.FC<MergeProps> = ({
   readQuestionnaires,

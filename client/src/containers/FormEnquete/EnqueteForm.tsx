@@ -1,26 +1,26 @@
 import * as React from 'react'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
-import { Questionnaire } from '../../stores/domain/form/type'
-import FormLabel from '../../components/FormLabel'
-import { TextField, AddTextField } from '../../components/TextField'
-import TextArea from '../../components/TextArea'
-import SelectBox from '../../components/SelectBox'
-import CheckBox from '../../components/CheckBox'
-import RadioButton from '../../components/RadioButton'
-import ToggleButton from '../../components/ToggleButton'
-import Accordion from '../../components/Accordion'
-import { Button } from '../../components/Button'
+import { Questionnaire } from 'stores/domain/form/type'
+import FormLabel from 'components/FormLabel'
+import { TextField, AddTextField } from 'components/TextField'
+import TextArea from 'components/TextArea'
+import SelectBox from 'components/SelectBox'
+import CheckBox from 'components/CheckBox'
+import RadioButton from 'components/RadioButton'
+import ToggleButton from 'components/ToggleButton'
+import Accordion from 'components/Accordion'
+import { Button } from 'components/Button'
 // import { connect } from "react-redux";
 // import { push } from "connected-react-router";
-// import SubModal from "../../components/SubModal";
-// import DateCalendar from "../../components/DateCalendar";
-import Icon from '../../components/Icon'
+// import SubModal from "components/SubModal";
+// import DateCalendar from "components/DateCalendar";
+import Icon from 'components/Icon'
 // import {
 //   clearQuestionnaires,
 //   createQuestionnaires,
 //   updateQuestionnaires
-// } from "../../actions/questionnaires";
+// } from "actions/questionnaires";
 type InitialValuesProps = {
   initialValues: Questionnaire
 }
