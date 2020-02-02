@@ -2,6 +2,7 @@ import Express from "express";
 import cors from "cors";
 // import uuidv4 from "uuid/v4";
 import QuestionnairesJson from "./data/questionnaires.json";
+import AnswersJson from "./data/answers.json";
 
 const app = Express();
 
@@ -12,12 +13,20 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(cors());
 
 type Questionnaire = typeof QuestionnairesJson;
+type Answers = typeof AnswersJson;
 
 // ルーティング設定
 app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
   const data: Questionnaire[] = QuestionnairesJson.questionnaires;
   res.json(data);
 });
+app.get(
+  "/api/v2/current_user/owner/questionnaires/:id/answer_summary",
+  (req, res) => {
+    const data: Answers = AnswersJson.questionnaire_result;
+    res.json(data);
+  }
+);
 // app.post("/api/v1/hoge", (req, res) => {
 //   const reqBody = req.body;
 //   const title = reqBody.title;
