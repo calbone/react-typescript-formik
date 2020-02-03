@@ -1,7 +1,7 @@
 {
   "questionnaire_result": {
     "total_count": 14,
-    "confidence_available": "true",
+    "confidence_available": true,
     "answer_detail_summaries": [
       {
         "answer_detail_summary": {

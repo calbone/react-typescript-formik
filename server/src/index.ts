@@ -13,7 +13,24 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(cors());
 
 type Questionnaire = typeof QuestionnairesJson;
-type Answers = typeof AnswersJson;
+type Answers = {
+  total_count: number;
+  confidence_available: boolean;
+  answer_detail_summaries: AnswerDetailSummary[];
+};
+type AnswerDetailSummary = {
+  question_uuid: string;
+  question_title: string;
+  type: "nickname" | "choice" | "selectbox" | "text";
+  answer_count: number;
+  summary: Summary;
+};
+type Summary =
+  | string[]
+  | {
+      choice_title: string;
+      choice_count: number;
+    }[];
 
 // ルーティング設定
 app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
