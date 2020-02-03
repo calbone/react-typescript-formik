@@ -1,6 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects'
-import * as actions from '../actions/answerSummary'
-import { readAnswerSummaryRequest } from '../../../../api/requests/answerSummary'
+import * as actions from 'stores/domain/form/actions/answerSummary'
+import { readAnswerSummaryRequest } from 'api/requests/answerSummary'
 
 export function* handleReadAnswerSummaryRequest(action: actions.ActionTypes) {
   try {
