@@ -1,4 +1,5 @@
 import * as React from 'react'
+import styled from 'styled-components'
 import { AnswerSummary } from 'stores/domain/form/type'
 import { commaSeparated } from 'utils/commaSeparated'
 import Icon from 'components/Icon'
@@ -12,10 +13,17 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
   const isObject = (obj: object | []) => {
     return Object.prototype.toString.call(obj) === '[object Object]'
   }
-  console.log('answer_detail_summaries:', answer_detail_summaries)
+  const ResultSummary = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $margin * 2;
+    padding: 12px 16px;
+    background: $color-base-c;
+    font-weight: bold;
+  `
   return (
     <React.Fragment>
-      <div className="p-formEnquete__resultSummary">
+      <ResultSummary>
         <p>
           集計結果
           <span className="p-formEnquete__summaryNum">
@@ -34,7 +42,7 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
             </li>
           </ul>
         </div>
-      </div>
+      </ResultSummary>
       <div className="p-formEnquete__resultGuide">
         個人情報（メールアドレス、住所）はCSVをダウンロードしてご確認いただけます。
         <br />
