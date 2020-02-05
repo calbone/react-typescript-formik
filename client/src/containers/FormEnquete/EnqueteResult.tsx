@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { AnswerSummary } from 'stores/domain/form/type'
+import PopMenu from 'components/PopMenu'
 import { commaSeparated } from 'utils/commaSeparated'
 import Icon from 'components/Icon'
 
@@ -20,28 +21,76 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
     padding: 12px 16px;
     background: $color-base-c;
     font-weight: bold;
+    .summaryNum {
+      font-size: 20px;
+    }
   `
+  // const PopMenu = styled.div`
+  //   display: flex;
+  //   flex: 0 0 auto;
+  //   align-items: center;
+  //   position: relative;
+  //   cursor: pointer;
+  //   svg {
+  //     width: 24px;
+  //     height: 24px;
+  //     fill: ${({ theme }) => theme.colors.mainC};
+  //     min-width: 16px;
+  //   }
+  //   &:hover {
+  //     .popMenu__select {
+  //       visibility: visible;
+  //       opacity: 1;
+  //       z-index: 1;
+  //     }
+  //   }
+  //   .popMenu__select {
+  //     visibility: hidden;
+  //     opacity: 0;
+  //     position: absolute;
+  //     top: calc(100% + 5px);
+  //     right: 0;
+  //     z-index: -1;
+  //     border-radius: 2px;
+  //     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  //     background-color: ${({ theme }) => theme.colors.baseC};
+  //     white-space: nowrap;
+  //     cursor: pointer;
+  //     transition: 0.3s;
+  //   }
+  //   li + li {
+  //     border-top: 1px solid ${({ theme }) => theme.colors.baseA};
+  //   }
+  //   button {
+  //     width: 100%;
+  //     padding: 10px 65px;
+  //     font-weight: bold;
+  //     font-size: 14px;
+  //     line-height: 1.5;
+  //   }
+  // `
+  const menuList = ['Shift-JIS', 'UTF-8']
   return (
     <React.Fragment>
       <ResultSummary>
         <p>
           集計結果
-          <span className="p-formEnquete__summaryNum">
+          <span className="summaryNum">
             {commaSeparated(answerSummary.total_count)}件
           </span>
         </p>
-        <div className="c-popMenu p-formEnquete__download">
+        <PopMenu label={'CSVダウンロード'} menuList={menuList}>
           <Icon type="download" />
-          CSVダウンロード
-          <ul className="c-popMenu__select">
+        </PopMenu>
+        {/*CSVダウンロード
+          <ul className="popMenu__select">
             <li>
               <button>Shift-JIS</button>
             </li>
             <li>
               <button>UTF-8</button>
             </li>
-          </ul>
-        </div>
+          </ul> */}
       </ResultSummary>
       <div className="p-formEnquete__resultGuide">
         個人情報（メールアドレス、住所）はCSVをダウンロードしてご確認いただけます。
