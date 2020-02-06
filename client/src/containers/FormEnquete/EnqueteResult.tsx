@@ -17,9 +17,9 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
   const ResultSummary = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-bottom: $margin * 2;
+    margin-bottom: ${({ theme }) => theme.margin * 2};
     padding: 12px 16px;
-    background: $color-base-c;
+    background: ${({ theme }) => theme.colors.baseC};
     font-weight: bold;
     .summaryNum {
       font-size: 20px;
