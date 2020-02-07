@@ -19,15 +19,12 @@ const PopMenuComponent: React.FC<PopMenuProps> = ({
       {label}
       <ul className="popMenu__select">
         {menuList.map((menu, idx) => {
-          return <li key={idx}>{menu}</li>
+          return (
+            <li key={idx}>
+              <button>{menu}</button>
+            </li>
+          )
         })}
-
-        {/* <li>
-          <button>Shift-JIS</button>
-        </li>
-        <li>
-          <button>UTF-8</button>
-        </li> */}
       </ul>
     </div>
   )
