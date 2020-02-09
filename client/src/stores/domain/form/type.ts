@@ -44,19 +44,22 @@ export interface Questionnaire {
 }
 
 interface AnswerDetailSummaries {
-  answer_detail_summary: {
-    question_uuid: string
-    question_title: string
-    type: 'nickname' | 'choice' | 'selectbox' | 'text'
-    answer_count: number
-    summary:
-      | {
-          choice_title: string
-          choice_count: number
-        }[]
-      | []
-  }
+  answer_detail_summary: AnswerDetailSummary
 }
+
+interface AnswerDetailSummary {
+  question_uuid: string
+  question_title: string
+  type: 'nickname' | 'choice' | 'selectbox' | 'text'
+  answer_count: number
+  summary: Summary[] | string[]
+}
+
+type Summary = {
+  choice_title: string
+  choice_count: number
+}
+
 export interface AnswerSummary {
   total_count: number
   confidence_available: boolean
