@@ -17,7 +17,7 @@ const PopMenuComponent: React.FC<PopMenuProps> = ({
     <div className={className}>
       {children && <div className="icon">{children}</div>}
       {label}
-      <ul className="popMenu__select">
+      <ul className="menuItem">
         {menuList.map((menu, idx) => {
           return (
             <li key={idx}>
@@ -43,7 +43,7 @@ const PopMenu = styled(PopMenuComponent)`
     min-width: 16px;
   }
   &:hover {
-    .popMenu__select {
+    .menuItem {
       visibility: visible;
       opacity: 1;
       z-index: 1;
@@ -56,7 +56,7 @@ const PopMenu = styled(PopMenuComponent)`
       margin-right: 8px;
     }
   }
-  .popMenu__select {
+  .menuItem {
     visibility: hidden;
     opacity: 0;
     position: absolute;
