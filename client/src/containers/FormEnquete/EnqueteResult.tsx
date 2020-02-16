@@ -100,7 +100,7 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
               <div className="answerNum">
                 回答 {answer.answer_detail_summary.answer_count}件
               </div>
-              {answer.answer_detail_summary.summary.length > 0 &&
+              {/* {answer.answer_detail_summary.summary.length > 0 &&
                 answer.answer_detail_summary.summary.map((summary, j) => {
                   return isObject(summary) ? (
                     <div className="resultItem resultItem--vote" key={j}>
@@ -112,7 +112,7 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
                       {j + 1}. {summary}
                     </div>
                   )
-                })}
+                })} */}
             </Part>
           )
         })}
