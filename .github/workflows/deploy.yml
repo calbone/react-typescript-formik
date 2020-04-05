@@ -19,3 +19,17 @@ jobs:
         run: cd client/ && pwd && yarn install
       - name: App Build
         run: cd client/ && pwd && yarn build
+      - name: Set Python
+        uses: actions/setup-python@v1
+      - name: Install AWS CLI
+        run: |
+          python -m pip install --upgrade pip
+          pip install awscli
+      - name: Deploy to S3
+        run: |
+          cd client/ &&　aws s3 sync $SOURCE_DIR s3://$AWS_S3_BUCKET
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: ./build
+          AWS_S3_BUCKET: www.kabuto.work
