@@ -28,6 +28,7 @@ jobs:
       - name: Deploy to S3
         run: |
           echo $SOURCE_DIR
+          cd client/
           aws s3 sync $SOURCE_DIR s3://$AWS_S3_BUCKET
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
