@@ -18,7 +18,7 @@ jobs:
       - name: Install node_modules
         run: cd client/ && pwd && yarn install
       - name: App Build
-        run: cd client/ && pwd && yarn build
+        run: cd client/ && pwd && yarn build && ls -a
       - name: Set Python
         uses: actions/setup-python@v1
       - name: Install AWS CLI
@@ -27,6 +27,7 @@ jobs:
           pip install awscli
       - name: Deploy to S3
         run: |
+          echo $SOURCE_DIR
           aws s3 sync $SOURCE_DIR s3://$AWS_S3_BUCKET
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} 
