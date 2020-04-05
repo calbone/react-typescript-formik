@@ -15,4 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - run: cd client/ && yarn install && yarn build
+      - name: Change Client directory
+        run: cd client/ && pwd
+      - run: yarn install
+      - run: yarn build
