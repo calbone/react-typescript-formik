@@ -1,0 +1,19 @@
+name: deploy
+
+on:
+  release:
+    types: [published, prereleased]
+
+jobs:
+  deploy:
+    name: tag deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set Node.js
+        uses: actions/setup-node@v1
+        width:
+          node-version: 12.x
+      - run: yarn
+      - run: yarn build
