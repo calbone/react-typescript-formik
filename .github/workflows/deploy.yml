@@ -18,4 +18,4 @@ jobs:
       - name: Install node_modules
         run: cd client/ && pwd && yarn install
       - name: App Build
-        run: cd client/ && pwd &&  yarn build
+        run: cd client/ && pwd && yarn build
