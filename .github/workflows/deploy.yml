@@ -16,6 +16,4 @@ jobs:
         with:
           node-version: 12.x
       - run: yarn install
-      - run: | 
-          cd client/
-          yarn build
+      - run: cd client/ && yarn build
