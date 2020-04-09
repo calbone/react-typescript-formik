@@ -11,9 +11,9 @@ type AnswerSummaryProps = {
 
 const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
   const { answer_detail_summaries = [] } = answerSummary
-  const isObject = (obj: object | []) => {
-    return Object.prototype.toString.call(obj) === '[object Object]'
-  }
+  // const isObject = (obj: object | []) => {
+  //   return Object.prototype.toString.call(obj) === '[object Object]'
+  // }
   const ResultSummary = styled.div`
     display: flex;
     justify-content: space-between;
