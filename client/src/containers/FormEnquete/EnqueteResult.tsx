@@ -11,9 +11,9 @@ type AnswerSummaryProps = {
 
 const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
   const { answer_detail_summaries = [] } = answerSummary
-  // const isObject = (obj: object | []) => {
-  //   return Object.prototype.toString.call(obj) === '[object Object]'
-  // }
+  const isObject = (obj: object | []) => {
+    return Object.prototype.toString.call(obj) === '[object Object]'
+  }
   const ResultSummary = styled.div`
     display: flex;
     justify-content: space-between;
@@ -88,10 +88,6 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
       </ResultGuide>
       <Box>
         {answer_detail_summaries.map((answer, i) => {
-          console.log(
-            'answer.answer_detail_summary.summary:',
-            answer.answer_detail_summary.summary
-          )
           return (
             <Part key={i}>
               <p className="resultTitle">
@@ -100,7 +96,7 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
               <div className="answerNum">
                 回答 {answer.answer_detail_summary.answer_count}件
               </div>
-              {/* {answer.answer_detail_summary.summary.length > 0 &&
+              {answer.answer_detail_summary.summary.length > 0 &&
                 answer.answer_detail_summary.summary.map((summary, j) => {
                   return isObject(summary) ? (
                     <div className="resultItem resultItem--vote" key={j}>
@@ -112,7 +108,7 @@ const EnqueteResult: React.FC<AnswerSummaryProps> = ({ answerSummary }) => {
                       {j + 1}. {summary}
                     </div>
                   )
-                })} */}
+                })}
             </Part>
           )
         })}

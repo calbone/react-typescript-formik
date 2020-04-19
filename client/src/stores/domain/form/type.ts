@@ -52,7 +52,7 @@ interface AnswerDetailSummary {
   question_title: string
   type: 'nickname' | 'choice' | 'selectbox' | 'text'
   answer_count: number
-  summary: Summary[] | string[]
+  summary: Summary[]
 }
 
 type Summary = {
