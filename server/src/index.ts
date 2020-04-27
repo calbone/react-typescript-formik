@@ -2,7 +2,7 @@ import Express from "express";
 import cors from "cors";
 // import uuidv4 from "uuid/v4";
 import QuestionnairesJson from "./data/questionnaires.json";
-import AnswersJson from "./data/answers.json";
+import answersData from "./data/answers";
 
 const app = Express();
 
@@ -13,34 +13,43 @@ app.use(Express.urlencoded({ extended: true }));
 app.use(cors());
 
 type Questionnaire = typeof QuestionnairesJson;
-type Answers = {
-  total_count: number;
-  confidence_available: boolean;
-  answer_detail_summaries: AnswerDetailSummary[];
-};
-type AnswerDetailSummary = {
-  question_uuid: string;
-  question_title: string;
-  type: "nickname" | "choice" | "selectbox" | "text";
-  answer_count: number;
-  summary: Summary;
-};
-type Summary =
-  | string[]
+
+type Summary = (
+  | string
   | {
       choice_title: string;
       choice_count: number;
-    }[];
+    }
+  | null
+)[];
+type FormType = "nickname" | "choice" | "selectbox" | "text";
+type AnswerDetailSummary = {
+  question_uuid: string;
+  question_title: string;
+  type: FormType;
+  answer_count: number;
+  summary: Summary;
+};
+
+type AnswerDetailSummaries = {
+  answer_detail_summary: AnswerDetailSummary;
+};
+
+type AnswerSummary = {
+  total_count: number;
+  confidence_available: boolean;
+  answer_detail_summaries: AnswerDetailSummaries[];
+};
 
 // ルーティング設定
-app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
-  const data: Questionnaire[] = QuestionnairesJson.questionnaires;
-  res.json(data);
-});
+// app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
+//   const data: Questionnaire[] = QuestionnairesJson.questionnaires;
+//   res.json(data);
+// });
 app.get(
   "/api/v2/current_user/owner/questionnaires/:id/answer_summary",
   (req, res) => {
-    const data: Answers = AnswersJson.questionnaire_result;
+    const data: AnswerSummary = answersData.questionnaire_result;
     res.json(data);
   }
 );
