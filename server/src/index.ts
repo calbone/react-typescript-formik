@@ -1,7 +1,8 @@
 import Express from "express";
 import cors from "cors";
 // import uuidv4 from "uuid/v4";
-import QuestionnairesJson from "./data/questionnaires.json";
+import Questionnaires from "./data/questionnaire/list.json";
+import { Questionnaire } from "./data/questionnaire/types";
 import answersData from "./data/answers";
 
 const app = Express();
@@ -11,8 +12,6 @@ app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
 // cors対応
 app.use(cors());
-
-type Questionnaire = typeof QuestionnairesJson;
 
 type Summary = (
   | string
@@ -42,10 +41,11 @@ type AnswerSummary = {
 };
 
 // ルーティング設定
-// app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
-//   const data: Questionnaire[] = QuestionnairesJson.questionnaires;
-//   res.json(data);
-// });
+app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
+  const data: Questionnaire[] = Questionnaires.data;
+  res.json(data);
+});
+
 app.get(
   "/api/v2/current_user/owner/questionnaires/:id/answer_summary",
   (req, res) => {
