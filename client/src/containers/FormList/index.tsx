@@ -5,15 +5,19 @@ import { readQuestionnaires } from 'stores/domain/form/actions/questionnaires'
 import FormList from 'components/pages/FormList'
 
 export interface DispatchProps {
-  readQuestionnaires: () => void
+  readQuestionnaires(): void
 }
 
 export interface StateProps {
   questionnaires: Questionnaire[]
 }
 
-const mapStateToProps = (state: any): StateProps => ({
-  questionnaires: state.questionnaires.questionnaires,
+const mapStateToProps = ({
+  questionnaires: { questionnaires },
+}: {
+  questionnaires: StateProps
+}): StateProps => ({
+  questionnaires,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
