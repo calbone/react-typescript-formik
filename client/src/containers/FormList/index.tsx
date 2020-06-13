@@ -1,26 +1,20 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { Questionnaire } from 'stores/domain/form/type'
 import { readQuestionnaires } from 'stores/domain/form/actions/questionnaires'
-import FormList from 'components/pages/FormList'
-
-export interface DispatchProps {
-  readQuestionnaires(): void
-}
-
-export interface StateProps {
-  questionnaires: Questionnaire[]
-}
+import FormList, {
+  FormListStateProps,
+  FormListDispatchProps,
+} from 'components/pages/FormList'
 
 const mapStateToProps = ({
   questionnaires: { questionnaires },
 }: {
-  questionnaires: StateProps
-}): StateProps => ({
+  questionnaires: FormListStateProps
+}): FormListStateProps => ({
   questionnaires,
 })
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+const mapDispatchToProps = (dispatch: Dispatch): FormListDispatchProps => ({
   readQuestionnaires: () => dispatch(readQuestionnaires()),
 })
 

@@ -5,7 +5,10 @@ import Icon from 'components/Icon'
 import Content from 'components/Content'
 import PageHeader from 'components/PageHeader'
 import Tag from 'components/Tag'
-import { MergeProps } from './types'
+import { MergeProps, StateProps, DispatchProps } from './types'
+
+export type FormListStateProps = StateProps
+export type FormListDispatchProps = DispatchProps
 
 const FormList: React.FC<MergeProps> = ({
   readQuestionnaires,
