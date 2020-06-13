@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { readQuestionnairesRequest } from './questionnaires'
+import { readQuestionnairesRequest } from '.'
 import MockAdapter from 'axios-mock-adapter'
-import QuestionnairesData from '../__mocks__/questionnaires.json'
+import QuestionnairesData from '../../__mocks__/questionnaires.json'
 
 describe('Questionnaires API', () => {
   const mock = new MockAdapter(axios)

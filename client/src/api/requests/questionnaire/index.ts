@@ -1,5 +1,5 @@
-import request from '../'
-import { Questionnaire } from '../../stores/domain/form/type'
+import request from '../..'
+import { Questionnaire } from './types'
 // export const createQuestionnairesRequest = async payload => {
 //   const url = "/api/v2/current_user/owner/questionnaires";
 //   const data = await request.post(url, payload);

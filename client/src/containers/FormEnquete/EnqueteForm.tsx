@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
-import { Questionnaire } from 'stores/domain/form/type'
+import { Questionnaire } from 'api/requests/questionnaire/types'
 import FormLabel from 'components/FormLabel'
 import { TextField, AddTextField } from 'components/TextField'
 import TextArea from 'components/TextArea'
@@ -27,14 +27,14 @@ type InitialValuesProps = {
 const EnqueteForm: React.FC<InitialValuesProps> = ({ initialValues }) => {
   const formik = useFormik({
     initialValues,
-    onSubmit: values => {
+    onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2))
-    }
+    },
   })
   const disclosureTypes = [
     { label: '全体公開', value: 'all' },
     { label: 'フォロワー限定', value: 'followers' },
-    { label: '有料会員限定', value: 'paidMember' }
+    { label: '有料会員限定', value: 'paidMember' },
   ]
   const questionTypes = [
     { label: 'テキストエリア', value: 'textarea' },
@@ -43,7 +43,7 @@ const EnqueteForm: React.FC<InitialValuesProps> = ({ initialValues }) => {
     { label: 'チェックボックス', value: 'checkbox' },
     { label: 'ラジオボタン', value: 'radio' },
     { label: 'メールアドレス(個人情報)', value: 'mail' },
-    { label: '住所(個人情報)', value: 'address' }
+    { label: '住所(個人情報)', value: 'address' },
   ]
   const FormQuestionBox = styled.div`
     border-radius: 2px;

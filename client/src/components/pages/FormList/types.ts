@@ -1,4 +1,4 @@
-import { Questionnaire } from 'stores/domain/form/type'
+import { Questionnaire } from 'api/requests/questionnaire/types'
 
 export interface StateProps {
   questionnaires: Questionnaire[]

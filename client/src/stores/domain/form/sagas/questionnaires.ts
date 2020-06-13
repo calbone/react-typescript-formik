@@ -2,8 +2,8 @@ import { takeEvery, call, put } from 'redux-saga/effects'
 import * as actions from '../actions/questionnaires'
 import {
   readQuestionnairesRequest,
-  readQuestionnaireRequest
-} from '../../../../api/requests/questionnaires'
+  readQuestionnaireRequest,
+} from 'api/requests/questionnaire'
 
 // export function* handleCreateQuestionnairesRequest(action) {
 //   try {

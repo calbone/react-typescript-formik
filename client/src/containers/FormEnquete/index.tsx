@@ -5,7 +5,8 @@ import { Dispatch } from 'redux'
 import styled from 'styled-components'
 import { readQuestionnaire } from 'stores/domain/form/actions/questionnaires'
 import { readAnswerSummary } from 'stores/domain/form/actions/answerSummary'
-import { Questionnaire, AnswerSummary } from 'stores/domain/form/type'
+import { AnswerSummary } from 'stores/domain/form/type'
+import { Questionnaire } from 'api/requests/questionnaire/types'
 import Icon from 'components/Icon'
 import Content from 'components/Content'
 import PageHeader from 'components/PageHeader'
@@ -35,7 +36,7 @@ const FormEnquete: React.FC<MergeProps> = ({
   answerSummary,
   readQuestionnaire,
   readAnswerSummary,
-  match
+  match,
 }) => {
   const [isModal, setModal] = useState(false)
   const [isSubModal, setSubModal] = useState(false)
@@ -88,15 +89,15 @@ const FormEnquete: React.FC<MergeProps> = ({
           choices: [
             {
               choice_uuid: null,
-              choice_title: null
-            }
+              choice_title: null,
+            },
           ],
           required: false,
           question_type: null,
           question_uuid: null,
-          question_title: null
-        }
-      ]
+          question_title: null,
+        },
+      ],
     },
     answer_limit_status: 'unlimited',
     finish_body:
@@ -104,7 +105,7 @@ const FormEnquete: React.FC<MergeProps> = ({
     answer_count: 0,
     show_status: true,
     show_start_datetime: new Date(),
-    show_end_datetime: new Date()
+    show_end_datetime: new Date(),
   }
   const TargetContent = () => {
     if (tabName === 'edit') {
@@ -329,13 +330,13 @@ const FormEnquete: React.FC<MergeProps> = ({
 const mapStateToProps = (state: any): StateProps => {
   return {
     questionnaire: state.questionnaires.questionnaire,
-    answerSummary: state.answerSummary.answerSummary
+    answerSummary: state.answerSummary.answerSummary,
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): DispathProps => ({
-  readQuestionnaire: id => dispatch(readQuestionnaire(id)),
-  readAnswerSummary: id => dispatch(readAnswerSummary(id))
+  readQuestionnaire: (id) => dispatch(readQuestionnaire(id)),
+  readAnswerSummary: (id) => dispatch(readAnswerSummary(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormEnquete)
