@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { readQuestionnaires } from 'stores/domain/form/actions/questionnaires'
+import { readQuestionnaires } from 'stores/domain/form/questionnaires'
 import FormList, {
   FormListStateProps,
   FormListDispatchProps,

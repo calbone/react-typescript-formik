@@ -1,15 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { ThemeProvider } from 'styled-components'
-import rootReducer from './stores/domain/form/reducers'
-import rootSaga from './stores/domain/form/sagas'
+import { all } from 'redux-saga/effects'
 import { themes } from './constants/themes'
 import GlobalStyle from './components/GlobalStyle'
 import App from './App'
 import { composeWithDevTools } from 'redux-devtools-extension'
+// reducer
+import { questionnaires } from 'stores/domain/form/questionnaires'
+import { answerSummary } from 'stores/domain/form/answerSummary'
+
+// saga
+import { questionnairesSagas } from 'stores/domain/form/questionnaires'
+import { answerSummarySagas } from 'stores/domain/form/answerSummary'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -24,10 +30,20 @@ const composeReduxDevToolsEnhancers = composeWithDevTools({
     skip: true, // skip (cancel) actions
     reorder: true, // drag and drop actions in the history list
     dispatch: true, // dispatch custom actions or action creators
-    test: true // generate tests for the selected actions
-  }
+    test: true, // generate tests for the selected actions
+  },
   // other options like actionSanitizer, stateSanitizer
 })
+
+const rootReducer = () =>
+  combineReducers({
+    questionnaires,
+    answerSummary,
+  })
+
+function* rootSaga() {
+  yield all([questionnairesSagas(), answerSummarySagas()])
+}
 
 const store = createStore(
   rootReducer(),
