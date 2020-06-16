@@ -80,7 +80,7 @@ const FormList: React.FC<MergeProps> = ({
           </CreateForm>
         </Link>
         <FormListWrapper>
-          {questionnaires.map((question) => {
+          {questionnaires?.map((question) => {
             return (
               <Link to={`/enquete/${question.id}/edit`} key={question.id}>
                 <FormListItem>
