@@ -1,13 +1,3 @@
-// reducer/initialStateのinterface
-export interface QuestionnairesState {
-  questionnaires: []
-  questionnaire: {}
-  create: { loaded: boolean; error: boolean | null }
-  read: { loaded: boolean; error: boolean | null }
-  update: { loaded: boolean; error: boolean | null }
-  delete: { loaded: boolean; error: boolean | null }
-}
-
 export interface AnswerSummaryState {
   answerSummary: object
 }

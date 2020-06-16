@@ -1,4 +1,4 @@
-import { Questionnaire } from 'api/requests/questionnaire/types'
+import { Questionnaire } from 'types/questionnaire'
 
 export interface StateProps {
   questionnaires: Questionnaire[]

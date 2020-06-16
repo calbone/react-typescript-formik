@@ -1,5 +1,5 @@
 import request from '../..'
-import { Questionnaire } from './types'
+import { Questionnaire } from 'types/questionnaire'
 // export const createQuestionnairesRequest = async payload => {
 //   const url = "/api/v2/current_user/owner/questionnaires";
 //   const data = await request.post(url, payload);

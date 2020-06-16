@@ -1,5 +1,5 @@
-import { Questionnaire } from 'api/requests/questionnaire/types'
-import { QuestionnairesState } from '../type'
+import { Questionnaire } from 'types/questionnaire'
+// import { QuestionnairesState } from '../type'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import {
   readQuestionnairesRequest,
@@ -59,9 +59,18 @@ export type ActionTypes =
   | ReadQuestionnaireFailure
 
 // reducer
-const initialState: QuestionnairesState = {
-  questionnaires: [],
-  questionnaire: {},
+export interface QuestionnaireState {
+  questionnaires: Questionnaire[] | null
+  questionnaire: Questionnaire | null
+  create: { loaded: boolean; error: boolean | null }
+  read: { loaded: boolean; error: boolean | null }
+  update: { loaded: boolean; error: boolean | null }
+  delete: { loaded: boolean; error: boolean | null }
+}
+
+const initialState: QuestionnaireState = {
+  questionnaires: null,
+  questionnaire: null,
   create: { loaded: true, error: null },
   read: { loaded: true, error: null },
   update: { loaded: true, error: null },
@@ -71,7 +80,7 @@ const initialState: QuestionnairesState = {
 export const questionnaires = (
   state = initialState,
   action: ActionTypes
-): QuestionnairesState => {
+): QuestionnaireState => {
   const { type, payload } = action
   switch (type) {
     // case ActionTypes.CLEAR_QUESTIONNAIRES:

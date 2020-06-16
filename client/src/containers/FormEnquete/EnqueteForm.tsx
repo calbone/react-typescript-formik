@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useFormik } from 'formik'
 import styled from 'styled-components'
-import { Questionnaire } from 'api/requests/questionnaire/types'
+import { Questionnaire } from 'types/questionnaire'
 import FormLabel from 'components/FormLabel'
 import { TextField, AddTextField } from 'components/TextField'
 import TextArea from 'components/TextArea'
