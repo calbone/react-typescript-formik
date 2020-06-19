@@ -1,5 +1,4 @@
-import { AnswerSummary } from '../type'
-import { AnswerSummaryState } from '../type'
+import { AnswerSummary } from 'types/answerSummary'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import { readAnswerSummaryRequest } from 'api/requests/answerSummary'
 
@@ -30,8 +29,12 @@ export type ActionTypes =
   | ReadAnswerSummaryFailure
 
 // reducer
+interface AnswerSummaryState {
+  answerSummary: AnswerSummary | null
+}
+
 const initialState: AnswerSummaryState = {
-  answerSummary: {},
+  answerSummary: null,
 }
 
 export const answerSummary = (state = initialState, action: ActionTypes) => {

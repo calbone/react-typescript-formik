@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { AnswerSummary } from 'stores/domain/form/type'
+import { AnswerSummary } from 'types/answerSummary'
 import PopMenu from 'components/PopMenu'
 import { commaSeparated } from 'utils/commaSeparated'
 import Icon from 'components/Icon'

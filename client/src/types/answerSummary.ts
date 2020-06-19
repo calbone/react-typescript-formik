@@ -1,7 +1,3 @@
-export interface AnswerSummaryState {
-  answerSummary: object
-}
-
 interface AnswerDetailSummaries {
   answer_detail_summary: AnswerDetailSummary
 }
