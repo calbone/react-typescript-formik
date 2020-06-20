@@ -24,7 +24,7 @@ import Icon from 'components/Icon'
 type InitialValuesProps = {
   initialValues: Questionnaire
 }
-const EnqueteForm: React.FC<InitialValuesProps> = ({ initialValues }) => {
+const Form: React.FC<InitialValuesProps> = ({ initialValues }) => {
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
@@ -270,4 +270,4 @@ const EnqueteForm: React.FC<InitialValuesProps> = ({ initialValues }) => {
 //   })(EnqueteForm)
 // );
 
-export default EnqueteForm
+export default Form
