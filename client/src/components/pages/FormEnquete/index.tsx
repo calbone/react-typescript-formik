@@ -5,7 +5,7 @@ import Content from 'components/Content'
 import PageHeader from 'components/PageHeader'
 import { Modal, SubModal } from 'components/Modal'
 import { MergeProps, DispathProps, StateProps } from './types'
-import { Questionnaire } from 'types/questionnaire'
+import { defaultValues } from 'stores/domain/form/formik'
 import Form from './Form'
 import Result from './Result'
 
@@ -65,38 +65,13 @@ const FormEnquete: React.FC<MergeProps> = ({
       hideSubModal()
     }, 1800)
   }
-  const initialValues: Questionnaire = {
-    question_data: {
-      questions: [
-        {
-          choices: [
-            {
-              choice_uuid: null,
-              choice_title: null,
-            },
-          ],
-          required: false,
-          question_type: null,
-          question_uuid: null,
-          question_title: null,
-        },
-      ],
-    },
-    answer_limit_status: 'unlimited',
-    finish_body:
-      'この度はエントリーいただき誠にありがとうございました。\nエントリーが無事、完了いたしました。',
-    answer_count: 0,
-    show_status: true,
-    show_start_datetime: new Date(),
-    show_end_datetime: new Date(),
-  }
+
+  const initialValues = questionnaire ? questionnaire : defaultValues
   const TargetContent = () => {
-    if (tabName === 'edit') {
-      return <Form initialValues={initialValues} />
-    } else if (tabName === 'answer') {
+    if (tabName === 'answer') {
       return <Result answerSummary={answerSummary} />
     }
-    return null
+    return <Form initialValues={initialValues} />
   }
 
   const EnqueteHeader = styled.div`
