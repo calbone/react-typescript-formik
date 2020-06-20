@@ -47,7 +47,6 @@ const GlobalStyle = createGlobalStyle<{ theme: ThemeType }>`
     margin: 0;
     padding: 0;
     border: 0;
-    background-color: transparent;
   }
   button {
     cursor: pointer;

@@ -14,9 +14,9 @@ interface Question {
 export interface Questionnaire {
   id?: number
   user_id?: number
-  title?: string
-  body?: string
-  disclosure_scope?: 'all' | 'follower'
+  title: string
+  body: string
+  disclosure_scope: 'all' | 'follower' | ''
   show_status: boolean
   show_start_datetime: Date
   show_end_datetime: Date
