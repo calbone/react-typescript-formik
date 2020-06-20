@@ -11,26 +11,11 @@ import RadioButton from 'components/RadioButton'
 import ToggleButton from 'components/ToggleButton'
 import Accordion from 'components/Accordion'
 import { Button } from 'components/Button'
-// import { connect } from "react-redux";
-// import { push } from "connected-react-router";
-// import SubModal from "components/SubModal";
-// import DateCalendar from "components/DateCalendar";
 import Icon from 'components/Icon'
-// import {
-//   clearQuestionnaires,
-//   createQuestionnaires,
-//   updateQuestionnaires
-// } from "actions/questionnaires";
 type InitialValuesProps = {
   initialValues: Questionnaire
 }
 const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
-  // const formik = useFormik({
-  //   initialValues,
-  //   onSubmit: (values) => {
-  //     alert(JSON.stringify(values, null, 2))
-  //   },
-  // })
   const disclosureTypes = [
     { label: '全体公開', value: 'all' },
     { label: 'フォロワー限定', value: 'followers' },
@@ -230,15 +215,6 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
                 content={<TextArea rows={9} />}
               />
             </FormQuestionAccordion>
-            {/* <label htmlFor="email">Email Address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-        />
-        <button type="submit">Submit</button> */}
           </FormQuestionBox>
           <FormQuestionBox>
             <div className="part">
@@ -264,29 +240,5 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
     </Formik>
   )
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     isLoaded: state.questionnaires.update.loaded,
-//     isError: state.questionnaires.update.error,
-//     EnqueteForm: state.form.EnqueteForm || {}
-//   };
-// };
-// const mapDispatchToProps = {
-//   clearQuestionnaires,
-//   createQuestionnaires,
-//   updateQuestionnaires,
-//   push
-// };
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(
-//   reduxForm({
-//     validate,
-//     form: "EnqueteForm",
-//     enableReinitialize: true
-//   })(EnqueteForm)
-// );
 
 export default FormInput
