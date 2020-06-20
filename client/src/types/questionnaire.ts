@@ -1,3 +1,7 @@
+type DisclosureScope = 'all' | 'follower' | 'paidMember'
+
+type QuestionTypes = 'textbox' | 'selectbox' | 'radio' | 'textbox'
+
 interface Question {
   choices?: [
     {
@@ -6,7 +10,7 @@ interface Question {
     }
   ]
   required?: boolean
-  question_type?: 'textbox' | 'selectbox' | 'radio' | 'textbox' | null
+  question_type?: QuestionTypes | null
   question_uuid?: string | null
   question_title?: string | null
 }
@@ -14,9 +18,9 @@ interface Question {
 export interface Questionnaire {
   id?: number
   user_id?: number
-  title: string
-  body: string
-  disclosure_scope: 'all' | 'follower' | ''
+  title: string | null
+  body: string | null
+  disclosure_scope: DisclosureScope | null
   show_status: boolean
   show_start_datetime: Date
   show_end_datetime: Date

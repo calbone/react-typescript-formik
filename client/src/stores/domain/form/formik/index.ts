@@ -1,9 +1,9 @@
 import { Questionnaire } from 'types/questionnaire'
 
 export const defaultValues: Questionnaire = {
-  title: '',
-  body: '',
-  disclosure_scope: '',
+  title: null,
+  body: null,
+  disclosure_scope: null,
   show_status: true,
   show_start_datetime: new Date(),
   show_end_datetime: new Date(),
