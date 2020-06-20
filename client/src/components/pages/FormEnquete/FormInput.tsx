@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useFormik } from 'formik'
+import { Form, FormikProps, Formik } from 'formik'
 import styled from 'styled-components'
 import { Questionnaire } from 'types/questionnaire'
 import FormLabel from 'components/FormLabel'
@@ -24,13 +24,13 @@ import Icon from 'components/Icon'
 type InitialValuesProps = {
   initialValues: Questionnaire
 }
-const Form: React.FC<InitialValuesProps> = ({ initialValues }) => {
-  const formik = useFormik({
-    initialValues,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2))
-    },
-  })
+const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
+  // const formik = useFormik({
+  //   initialValues,
+  //   onSubmit: (values) => {
+  //     alert(JSON.stringify(values, null, 2))
+  //   },
+  // })
   const disclosureTypes = [
     { label: '全体公開', value: 'all' },
     { label: 'フォロワー限定', value: 'followers' },
@@ -154,70 +154,83 @@ const Form: React.FC<InitialValuesProps> = ({ initialValues }) => {
     padding: 32px 0;
   `
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <FormQuestionBox>
-        <div className="part">
-          <FormGroup>
-            <FormLabel title="フォームタイトル" require />
-            <TextField />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel title="質問内容" require />
-            <QuestionBox>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={(values, actions) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2))
+          actions.setSubmitting(false)
+        }, 1000)
+      }}
+    >
+      {(props: FormikProps<Questionnaire>) => (
+        <Form>
+          <FormQuestionBox>
+            <div className="part">
               <FormGroup>
-                <FormLabel title="質問の形式" />
-                <SelectBox items={questionTypes} />
+                <FormLabel title="フォームタイトル" require />
+                <TextField name="title" />
               </FormGroup>
               <FormGroup>
-                <FormLabel title="質問タイトル" />
-                <TextField />
+                <FormLabel title="質問内容" require />
+                <QuestionBox>
+                  <FormGroup>
+                    <FormLabel title="質問の形式" />
+                    <SelectBox items={questionTypes} />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormLabel title="質問タイトル" />
+                    <TextField name="question_title" />
+                  </FormGroup>
+                  <FormGroup>
+                    <FormLabel title="選択肢" />
+                    <TextFieldColumn>
+                      <AddTextField />
+                      <PopMenu>
+                        <Icon type="dots" />
+                        <ul className="popMenu__select">
+                          <li>
+                            <button type="button">削除</button>
+                          </li>
+                        </ul>
+                      </PopMenu>
+                    </TextFieldColumn>
+                    <AddField>入力エリアを追加する</AddField>
+                  </FormGroup>
+                  <QuestionCheckBound>
+                    <Icon type="trash" />
+                    <div className="sortArea">
+                      <span className="c-sortIcon c-sortIcon--up" />
+                      <span className="c-sortIcon c-sortIcon--down" />
+                    </div>
+                    <CheckBox label="必須" name="required" value="required" />
+                  </QuestionCheckBound>
+                </QuestionBox>
               </FormGroup>
+            </div>
+            <div className="part">
               <FormGroup>
-                <FormLabel title="選択肢" />
-                <TextFieldColumn>
-                  <AddTextField />
-                  <PopMenu>
-                    <Icon type="dots" />
-                    <ul className="popMenu__select">
-                      <li>
-                        <button type="button">削除</button>
-                      </li>
-                    </ul>
-                  </PopMenu>
-                </TextFieldColumn>
-                <AddField>入力エリアを追加する</AddField>
+                <FormLabel title="応募制限" />
+                <RadioButton
+                  label="無制限"
+                  name="answer_limit_status"
+                  value="unlimited"
+                  defaultChecked
+                />
+                <RadioButton
+                  label="一回だけ"
+                  name="answer_limit_status"
+                  value="once"
+                />
               </FormGroup>
-              <QuestionCheckBound>
-                <Icon type="trash" />
-                <div className="sortArea">
-                  <span className="c-sortIcon c-sortIcon--up" />
-                  <span className="c-sortIcon c-sortIcon--down" />
-                </div>
-                <CheckBox label="必須" name="required" value="required" />
-              </QuestionCheckBound>
-            </QuestionBox>
-          </FormGroup>
-        </div>
-        <div className="part">
-          <FormGroup>
-            <FormLabel title="応募制限" />
-            <RadioButton
-              label="無制限"
-              name="answer_limit_status"
-              value="unlimited"
-              defaultChecked
-            />
-            <RadioButton
-              label="一回だけ"
-              name="answer_limit_status"
-              value="once"
-            />
-          </FormGroup>
-        </div>
-        <FormQuestionAccordion>
-          <Accordion title="完了ページ設定" content={<TextArea rows={9} />} />
-        </FormQuestionAccordion>
-        {/* <label htmlFor="email">Email Address</label>
+            </div>
+            <FormQuestionAccordion>
+              <Accordion
+                title="完了ページ設定"
+                content={<TextArea rows={9} />}
+              />
+            </FormQuestionAccordion>
+            {/* <label htmlFor="email">Email Address</label>
         <input
           id="email"
           name="email"
@@ -226,23 +239,29 @@ const Form: React.FC<InitialValuesProps> = ({ initialValues }) => {
           value={formik.values.email}
         />
         <button type="submit">Submit</button> */}
-      </FormQuestionBox>
-      <FormQuestionBox>
-        <div className="part">
-          <FormGroup>
-            <FormLabel title="公開状態" />
-            <ToggleButton labelOn="公開" labelOff="非公開" name="show_status" />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel title="公開範囲" />
-            <SelectBox items={disclosureTypes} />
-          </FormGroup>
-        </div>
-        <ButtonContainer>
-          <Button valid={true} type="submit" label="登録する" />
-        </ButtonContainer>
-      </FormQuestionBox>
-    </form>
+          </FormQuestionBox>
+          <FormQuestionBox>
+            <div className="part">
+              <FormGroup>
+                <FormLabel title="公開状態" />
+                <ToggleButton
+                  labelOn="公開"
+                  labelOff="非公開"
+                  name="show_status"
+                />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel title="公開範囲" />
+                <SelectBox items={disclosureTypes} />
+              </FormGroup>
+            </div>
+            <ButtonContainer>
+              <Button valid={true} type="submit" label="登録する" />
+            </ButtonContainer>
+          </FormQuestionBox>
+        </Form>
+      )}
+    </Formik>
   )
 }
 
@@ -270,4 +289,4 @@ const Form: React.FC<InitialValuesProps> = ({ initialValues }) => {
 //   })(EnqueteForm)
 // );
 
-export default Form
+export default FormInput
