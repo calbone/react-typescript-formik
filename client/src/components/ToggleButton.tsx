@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { useField } from 'formik'
 
 type ToggleButtonProps = {
   labelOn: string
@@ -12,11 +13,12 @@ const ToggleButtonComponent: React.FC<ToggleButtonProps> = ({
   className,
   labelOn,
   labelOff,
-  name
+  name,
 }) => {
+  const [field] = useField(name)
   return (
     <div className={className}>
-      <input name={name} type="checkbox" className="input" id={name} />
+      <input type="checkbox" className="input" id={name} {...field} />
       <label
         htmlFor={name}
         className="label"
