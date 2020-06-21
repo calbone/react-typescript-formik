@@ -1,4 +1,4 @@
-type DisclosureScope = 'all' | 'follower' | 'paidMember'
+type DisclosureScope = 'all' | 'follower' | 'paidMember' | 'none'
 
 type QuestionTypes = 'textbox' | 'selectbox' | 'radio' | 'textbox'
 
@@ -20,9 +20,9 @@ interface Question {
 export interface Questionnaire {
   id?: number
   user_id?: number
-  title: string | null
-  body: string | null
-  disclosure_scope: DisclosureScope | null
+  title: string
+  body: string
+  disclosure_scope?: DisclosureScope
   show_status: boolean
   show_start_datetime: Date
   show_end_datetime: Date
