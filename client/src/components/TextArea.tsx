@@ -1,18 +1,29 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { useField } from 'formik'
 
 type TextAreaProps = {
   className?: string
   label?: string
   rows?: number
+  name: string
 }
 
 const TextAreaComponent: React.FC<TextAreaProps> = ({
   className,
   label,
-  rows
+  rows,
+  name,
 }) => {
-  return <textarea className={className} placeholder={label} rows={rows} />
+  const [field] = useField(name)
+  return (
+    <textarea
+      className={className}
+      placeholder={label}
+      rows={rows}
+      {...field}
+    />
+  )
 }
 
 const TextArea = styled(TextAreaComponent)`

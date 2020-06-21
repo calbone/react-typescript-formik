@@ -200,7 +200,7 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
             <FormQuestionAccordion>
               <Accordion
                 title="完了ページ設定"
-                content={<TextArea rows={9} />}
+                content={<TextArea rows={9} name={'body'} />}
               />
             </FormQuestionAccordion>
           </FormQuestionBox>
