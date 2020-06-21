@@ -149,7 +149,7 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
                 <QuestionBox>
                   <FormGroup>
                     <FormLabel title="質問の形式" />
-                    <SelectBox items={questionTypes} />
+                    <SelectBox name={'question_type'} items={questionTypes} />
                   </FormGroup>
                   <FormGroup>
                     <FormLabel title="質問タイトル" />
@@ -216,7 +216,7 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
               </FormGroup>
               <FormGroup>
                 <FormLabel title="公開範囲" />
-                <SelectBox items={disclosureTypes} />
+                <SelectBox name={'disclosure_scope'} items={disclosureTypes} />
               </FormGroup>
             </div>
             <ButtonContainer>

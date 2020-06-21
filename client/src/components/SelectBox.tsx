@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { useField } from 'formik'
 
 type item = {
   label: string
@@ -9,14 +10,20 @@ type item = {
 type SelectBoxProps = {
   items: item[]
   className?: string
+  name: string
 }
 
-const SelectBoxComponent: React.FC<SelectBoxProps> = ({ className, items }) => {
+const SelectBoxComponent: React.FC<SelectBoxProps> = ({
+  className,
+  items,
+  name,
+}) => {
+  const [field] = useField(name)
   return (
     <div className={className}>
-      <select>
+      <select {...field}>
         <option value="">選択してください</option>
-        {items.map(item => (
+        {items.map((item) => (
           <option key={item.value} value={item.value}>
             {item.label}
           </option>
