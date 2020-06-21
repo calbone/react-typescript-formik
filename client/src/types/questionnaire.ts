@@ -2,6 +2,8 @@ type DisclosureScope = 'all' | 'follower' | 'paidMember'
 
 type QuestionTypes = 'textbox' | 'selectbox' | 'radio' | 'textbox'
 
+type AnswerLimitStatus = 'once' | 'unlimited'
+
 interface Question {
   choices?: [
     {
@@ -24,7 +26,7 @@ export interface Questionnaire {
   show_status: boolean
   show_start_datetime: Date
   show_end_datetime: Date
-  answer_limit_status: 'once' | 'unlimited'
+  answer_limit_status: AnswerLimitStatus
   finish_body: string
   answer_count: number
   question_data: {
