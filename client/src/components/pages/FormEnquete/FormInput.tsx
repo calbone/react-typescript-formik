@@ -188,7 +188,6 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
                   label="無制限"
                   name="answer_limit_status"
                   value="unlimited"
-                  defaultChecked
                 />
                 <RadioButton
                   label="一回だけ"

@@ -1,28 +1,28 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { useField } from 'formik'
 
 type RadioButtonProps = {
   className?: string
   name: string
   value: string
   label?: string
-  defaultChecked?: boolean
 }
 const RadioButtonComponent: React.FC<RadioButtonProps> = ({
   className,
   label,
   name,
   value,
-  defaultChecked
 }) => {
+  const [field] = useField(name)
   return (
     <div className={className}>
       <input
-        type="radio"
-        name={name}
         id={value}
+        type="radio"
         className="input"
-        defaultChecked={defaultChecked}
+        {...field}
+        value={value}
       />
       <label htmlFor={value} className="label">
         {label}
