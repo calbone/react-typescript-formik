@@ -7,6 +7,7 @@ type ToggleButtonProps = {
   labelOff: string
   name: string
   className?: string
+  defaultValue?: boolean
 }
 
 const ToggleButtonComponent: React.FC<ToggleButtonProps> = ({
@@ -14,11 +15,18 @@ const ToggleButtonComponent: React.FC<ToggleButtonProps> = ({
   labelOn,
   labelOff,
   name,
+  defaultValue,
 }) => {
   const [field] = useField(name)
   return (
     <div className={className}>
-      <input type="checkbox" className="input" id={name} {...field} />
+      <input
+        type="checkbox"
+        className="input"
+        id={name}
+        {...field}
+        defaultChecked={defaultValue}
+      />
       <label
         htmlFor={name}
         className="label"

@@ -212,6 +212,7 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
                   labelOn="公開"
                   labelOff="非公開"
                   name="show_status"
+                  defaultValue={initialValues.show_status}
                 />
               </FormGroup>
               <FormGroup>
