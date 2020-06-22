@@ -22,7 +22,6 @@ const SelectBoxComponent: React.FC<SelectBoxProps> = ({
   return (
     <div className={className}>
       <select {...field}>
-        <option value="">選択してください</option>
         {items.map((item) => (
           <option key={item.value} value={item.value}>
             {item.label}

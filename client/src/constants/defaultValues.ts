@@ -1,4 +1,5 @@
 export const disclosureTypes = [
+  { label: '選択してください', value: 'none' },
   { label: '全体公開', value: 'all' },
   { label: 'フォロワー限定', value: 'followers' },
   { label: '有料会員限定', value: 'paidMember' },
