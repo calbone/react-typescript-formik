@@ -1,6 +1,14 @@
 type DisclosureScope = 'all' | 'follower' | 'paidMember' | 'none'
 
-type QuestionTypes = 'textbox' | 'selectbox' | 'radio' | 'textbox'
+type QuestionTypes =
+  | 'textarea'
+  | 'textbox'
+  | 'selectbox'
+  | 'radio'
+  | 'checkbox'
+  | 'radio'
+  | 'mail'
+  | 'address'
 
 type AnswerLimitStatus = 'once' | 'unlimited'
 
@@ -12,7 +20,7 @@ interface Question {
     }
   ]
   required?: boolean
-  question_type?: QuestionTypes | null
+  question_type?: QuestionTypes
   question_uuid?: string | null
   question_title?: string | null
 }

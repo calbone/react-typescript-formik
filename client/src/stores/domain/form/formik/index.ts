@@ -21,7 +21,7 @@ export const defaultValues: Questionnaire = {
           },
         ],
         required: false,
-        question_type: null,
+        question_type: 'textarea',
         question_uuid: null,
         question_title: null,
       },
