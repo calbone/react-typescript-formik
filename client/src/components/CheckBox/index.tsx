@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { useField } from 'formik'
 
 type CheckBoxProps = {
   className?: string
@@ -13,17 +14,18 @@ const CheckBoxComponent: React.FC<CheckBoxProps> = ({
   name,
   label,
   value,
-  defaultChecked
+  defaultChecked,
 }) => {
+  const [field] = useField(name)
   return (
     <div className={className}>
       <div className="item">
         <input
           type="checkbox"
-          name={name}
           id={value}
           className="input"
           defaultChecked={defaultChecked}
+          {...field}
         />
         <label htmlFor={value} className="label">
           {label}
