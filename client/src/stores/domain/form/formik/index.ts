@@ -2,18 +2,12 @@ import { Questionnaire } from 'types/questionnaire'
 
 export const defaultValues: Questionnaire = {
   title: '',
-  body: '',
-  disclosure_scope: 'none',
-  show_status: true,
-  show_start_datetime: new Date(),
-  show_end_datetime: new Date(),
-  answer_limit_status: 'unlimited',
-  finish_body:
-    'この度はエントリーいただき誠にありがとうございました。\nエントリーが無事、完了いたしました。',
-  answer_count: 0,
   question_data: {
     questions: [
       {
+        question_uuid: null,
+        question_type: 'textarea',
+        question_title: null,
         choices: [
           {
             choice_uuid: null,
@@ -21,10 +15,16 @@ export const defaultValues: Questionnaire = {
           },
         ],
         required: false,
-        question_type: 'textarea',
-        question_uuid: null,
-        question_title: null,
       },
     ],
   },
+  answer_limit_status: 'unlimited',
+  body: '',
+  show_status: true,
+  disclosure_scope: 'none',
+  show_start_datetime: new Date(),
+  show_end_datetime: new Date(),
+  finish_body:
+    'この度はエントリーいただき誠にありがとうございました。\nエントリーが無事、完了いたしました。',
+  answer_count: 0,
 }
