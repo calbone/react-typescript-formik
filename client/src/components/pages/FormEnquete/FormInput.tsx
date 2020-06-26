@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Form, FormikProps, Formik } from 'formik'
+import { Form, FormikProps, FieldArray, Formik } from 'formik'
 import styled from 'styled-components'
 import { Questionnaire } from 'types/questionnaire'
 import FormLabel from 'components/FormLabel'
@@ -136,95 +136,131 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
         }, 1000)
       }}
     >
-      {(props: FormikProps<Questionnaire>) => (
-        <Form>
-          <FormQuestionBox>
-            <div className="part">
-              <FormGroup>
-                <FormLabel title="フォームタイトル" require />
-                <TextField name="title" />
-              </FormGroup>
-              <FormGroup>
-                <FormLabel title="質問内容" require />
-                <QuestionBox>
-                  <FormGroup>
-                    <FormLabel title="質問の形式" />
-                    <SelectBox name={'question_type'} items={questionTypes} />
-                  </FormGroup>
-                  <FormGroup>
-                    <FormLabel title="質問タイトル" />
-                    <TextField name="question_title" />
-                  </FormGroup>
-                  <FormGroup>
-                    <FormLabel title="選択肢" />
-                    <TextFieldColumn>
-                      <AddTextField />
-                      <PopMenu>
-                        <Icon type="dots" />
-                        <ul className="popMenu__select">
-                          <li>
-                            <button type="button">削除</button>
-                          </li>
-                        </ul>
-                      </PopMenu>
-                    </TextFieldColumn>
-                    <AddField>入力エリアを追加する</AddField>
-                  </FormGroup>
-                  <QuestionCheckBound>
-                    <Icon type="trash" />
-                    <div className="sortArea">
-                      <span className="c-sortIcon c-sortIcon--up" />
-                      <span className="c-sortIcon c-sortIcon--down" />
-                    </div>
-                    <CheckBox label="必須" name="required" value="required" />
-                  </QuestionCheckBound>
-                </QuestionBox>
-              </FormGroup>
-            </div>
-            <div className="part">
-              <FormGroup>
-                <FormLabel title="応募制限" />
-                <RadioButton
-                  label="無制限"
-                  name="answer_limit_status"
-                  value="unlimited"
+      {(props: FormikProps<Questionnaire>) => {
+        const {
+          question_data: { questions },
+        } = props.values
+        return (
+          <Form>
+            <FormQuestionBox>
+              <div className="part">
+                <FormGroup>
+                  <FormLabel title="フォームタイトル" require />
+                  <TextField name="title" />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel title="質問内容" require />
+
+                  <FieldArray
+                    name="question_data"
+                    render={(arrayHelpers) => (
+                      <QuestionBox>
+                        <FormGroup>
+                          <FormLabel title="質問の形式" />
+                          {questions.map((question, idx) => {
+                            return (
+                              <SelectBox
+                                key={idx}
+                                name={`question_data.questions[${idx}].question_type`}
+                                items={questionTypes}
+                              />
+                            )
+                          })}
+                        </FormGroup>
+                        <FormGroup>
+                          <FormLabel title="質問タイトル" />
+                          {questions.map((question, idx) => {
+                            return (
+                              <TextField
+                                name={`question_data.questions[${idx}].question_title`}
+                              />
+                            )
+                          })}
+                        </FormGroup>
+                        <FormGroup>
+                          <FormLabel title="選択肢" />
+                          <TextFieldColumn>
+                            <AddTextField />
+                            <PopMenu>
+                              <Icon type="dots" />
+                              <ul className="popMenu__select">
+                                <li>
+                                  <button type="button">削除</button>
+                                </li>
+                              </ul>
+                            </PopMenu>
+                          </TextFieldColumn>
+                          <AddField>入力エリアを追加する</AddField>
+                        </FormGroup>
+                        <QuestionCheckBound>
+                          <Icon type="trash" />
+                          <div className="sortArea">
+                            <span className="c-sortIcon c-sortIcon--up" />
+                            <span className="c-sortIcon c-sortIcon--down" />
+                          </div>
+                          {questions.map((question, idx) => {
+                            return (
+                              <CheckBox
+                                label="必須"
+                                name={`question_data.questions[${idx}].required`}
+                                value="required"
+                              />
+                            )
+                          })}
+                        </QuestionCheckBound>
+                      </QuestionBox>
+                    )}
+                  />
+                </FormGroup>
+              </div>
+              <div className="part">
+                <FormGroup>
+                  <FormLabel title="応募制限" />
+                  <RadioButton
+                    label="無制限"
+                    name="answer_limit_status"
+                    value="unlimited"
+                  />
+                  <RadioButton
+                    label="一回だけ"
+                    name="answer_limit_status"
+                    value="once"
+                  />
+                </FormGroup>
+              </div>
+              <FormQuestionAccordion>
+                <Accordion
+                  title="完了ページ設定"
+                  content={<TextArea rows={9} name={'body'} />}
                 />
-                <RadioButton
-                  label="一回だけ"
-                  name="answer_limit_status"
-                  value="once"
-                />
-              </FormGroup>
-            </div>
-            <FormQuestionAccordion>
-              <Accordion
-                title="完了ページ設定"
-                content={<TextArea rows={9} name={'body'} />}
-              />
-            </FormQuestionAccordion>
-          </FormQuestionBox>
-          <FormQuestionBox>
-            <div className="part">
-              <FormGroup>
-                <FormLabel title="公開状態" />
-                <ToggleButton
-                  labelOn="公開"
-                  labelOff="非公開"
-                  name="show_status"
-                  defaultValue={initialValues.show_status}
-                />
-              </FormGroup>
-              <FormGroup>
-                <FormLabel title="公開範囲" />
-                <SelectBox name={'disclosure_scope'} items={disclosureTypes} />
-              </FormGroup>
-            </div>
-            <ButtonContainer>
-              <Button valid={true} type="submit" label="登録する" />
-            </ButtonContainer>
-          </FormQuestionBox>
-        </Form>
-      )}
+              </FormQuestionAccordion>
+            </FormQuestionBox>
+            <FormQuestionBox>
+              <div className="part">
+                <FormGroup>
+                  <FormLabel title="公開状態" />
+                  <ToggleButton
+                    labelOn="公開"
+                    labelOff="非公開"
+                    name="show_status"
+                    defaultValue={initialValues.show_status}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <FormLabel title="公開範囲" />
+                  <SelectBox
+                    name={'disclosure_scope'}
+                    items={disclosureTypes}
+                  />
+                </FormGroup>
+              </div>
+              <ButtonContainer>
+                <Button valid={true} type="submit" label="登録する" />
+              </ButtonContainer>
+            </FormQuestionBox>
+          </Form>
+        )
+      }}
     </Formik>
   )
 }
