@@ -17,7 +17,7 @@ import { disclosureTypes, questionTypes } from 'constants/defaultValues'
 type InitialValuesProps = {
   initialValues: Questionnaire
 }
-const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
+const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
   const FormQuestionBox = styled.div`
     border-radius: 2px;
     background-color: ${({ theme }) => theme.colors.baseC};
@@ -169,7 +169,7 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
                         </FormGroup>
                         <FormGroup>
                           <FormLabel title="質問タイトル" />
-                          {questions.map((question, idx) => {
+                          {questions.map((_, idx) => {
                             return (
                               <TextField
                                 name={`question_data.questions[${idx}].question_title`}
@@ -265,4 +265,4 @@ const FormInput: React.FC<InitialValuesProps> = ({ initialValues }) => {
   )
 }
 
-export default FormInput
+export default Input

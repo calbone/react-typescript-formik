@@ -6,7 +6,7 @@ import PageHeader from 'components/PageHeader'
 import { Modal, SubModal } from 'components/Modal'
 import { MergeProps, DispathProps, StateProps } from './types'
 import { defaultValues } from 'stores/domain/form/formik'
-import FormInput from './FormInput'
+import Input from './Input'
 import Result from './Result'
 
 export type FromEnqueteDispathProps = DispathProps
@@ -71,7 +71,7 @@ const FormEnquete: React.FC<MergeProps> = ({
     if (tabName === 'answer') {
       return <Result answerSummary={answerSummary} />
     }
-    return <FormInput initialValues={initialValues} />
+    return <Input initialValues={initialValues} />
   }
 
   const EnqueteHeader = styled.div`
