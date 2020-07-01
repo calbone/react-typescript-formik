@@ -9,8 +9,8 @@ import { defaultValues } from 'stores/domain/form/formik'
 import Input from './Input'
 import Result from './Result'
 
-export type FromEnqueteDispathProps = DispathProps
-export type FromEnqueteStateProps = StateProps
+export type FormEnqueteDispathProps = DispathProps
+export type FormEnqueteStateProps = StateProps
 
 type TabNameTypes = 'edit' | 'answer'
 
