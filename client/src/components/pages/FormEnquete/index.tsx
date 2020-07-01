@@ -68,7 +68,7 @@ const FormEnquete: React.FC<MergeProps> = ({
 
   const initialValues = questionnaire || defaultValues
   const TargetContent = () => {
-    if (tabName === 'answer') {
+    if (tabName === 'answer' && answerSummary) {
       return <Result answerSummary={answerSummary} />
     }
     return <Input initialValues={initialValues} />

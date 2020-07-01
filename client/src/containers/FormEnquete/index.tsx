@@ -6,14 +6,12 @@ import FormEnquete, {
   FromEnqueteDispathProps,
   FromEnqueteStateProps,
 } from 'components/pages/FormEnquete'
+import { State } from 'stores/domain/form'
 
 const mapStateToProps = ({
   questionnaires: { questionnaire },
   answerSummary: { answerSummary },
-}: {
-  questionnaires: Pick<FromEnqueteStateProps, 'questionnaire'>
-  answerSummary: Pick<FromEnqueteStateProps, 'answerSummary'>
-}): FromEnqueteStateProps => {
+}: State): FromEnqueteStateProps => {
   return {
     questionnaire,
     answerSummary,

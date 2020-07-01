@@ -29,7 +29,7 @@ export type ActionTypes =
   | ReadAnswerSummaryFailure
 
 // reducer
-interface AnswerSummaryState {
+export interface AnswerSummaryState {
   answerSummary: AnswerSummary | null
 }
 

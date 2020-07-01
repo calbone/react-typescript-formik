@@ -8,8 +8,8 @@ export interface DispathProps {
 }
 
 export interface StateProps {
-  questionnaire: Questionnaire
-  answerSummary: AnswerSummary
+  questionnaire: Questionnaire | null
+  answerSummary: AnswerSummary | null
 }
 
 export type MergeProps = DispathProps &
