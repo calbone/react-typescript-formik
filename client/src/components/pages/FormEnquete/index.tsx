@@ -5,7 +5,7 @@ import Content from 'components/Content'
 import PageHeader from 'components/PageHeader'
 import { Modal, SubModal } from 'components/Modal'
 import { MergeProps, DispathProps, StateProps } from './types'
-import { defaultValues } from 'stores/domain/form/formik'
+import { defaultValues } from 'constants/defaultValues'
 import Input from './Input'
 import Result from './Result'
 

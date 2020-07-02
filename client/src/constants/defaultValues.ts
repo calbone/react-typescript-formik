@@ -1,16 +1,30 @@
-export const disclosureTypes = [
-  { label: '選択してください', value: 'none' },
-  { label: '全体公開', value: 'all' },
-  { label: 'フォロワー限定', value: 'followers' },
-  { label: '有料会員限定', value: 'paidMember' },
-]
+import { Questionnaire } from 'types/questionnaire'
 
-export const questionTypes = [
-  { label: 'テキストエリア', value: 'textarea' },
-  { label: 'テキストボックス', value: 'textbox' },
-  { label: 'セレクトボックス', value: 'selectbox' },
-  { label: 'チェックボックス', value: 'checkbox' },
-  { label: 'ラジオボタン', value: 'radio' },
-  { label: 'メールアドレス(個人情報)', value: 'mail' },
-  { label: '住所(個人情報)', value: 'address' },
-]
+export const defaultValues: Questionnaire = {
+  title: '',
+  question_data: {
+    questions: [
+      {
+        question_uuid: null,
+        question_type: 'textarea',
+        question_title: null,
+        choices: [
+          {
+            choice_uuid: null,
+            choice_title: null,
+          },
+        ],
+        required: false,
+      },
+    ],
+  },
+  answer_limit_status: 'unlimited',
+  body: '',
+  show_status: true,
+  disclosure_scope: 'none',
+  show_start_datetime: new Date(),
+  show_end_datetime: new Date(),
+  finish_body:
+    'この度はエントリーいただき誠にありがとうございました。\nエントリーが無事、完了いたしました。',
+  answer_count: 0,
+}

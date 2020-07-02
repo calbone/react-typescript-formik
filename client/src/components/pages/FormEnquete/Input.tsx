@@ -12,7 +12,7 @@ import ToggleButton from 'components/ToggleButton'
 import Accordion from 'components/Accordion'
 import { Button } from 'components/Button'
 import Icon from 'components/Icon'
-import { disclosureTypes, questionTypes } from 'constants/defaultValues'
+import { disclosureTypes, questionTypes } from 'constants/selectValues'
 
 type InitialValuesProps = {
   initialValues: Questionnaire

@@ -1,5 +1,4 @@
 import { Questionnaire } from 'types/questionnaire'
-// import { QuestionnairesState } from '../type'
 import { takeEvery, call, put } from 'redux-saga/effects'
 import {
   readQuestionnairesRequest,
