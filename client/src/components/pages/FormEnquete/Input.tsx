@@ -140,6 +140,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
         const {
           question_data: { questions },
         } = props.values
+        console.log('props.values', props.values)
         return (
           <Form>
             <FormQuestionBox>
@@ -157,7 +158,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                       <QuestionBox>
                         <FormGroup>
                           <FormLabel title="質問の形式" />
-                          {questions.map((question, idx) => {
+                          {questions?.map((question, idx) => {
                             return (
                               <SelectBox
                                 key={idx}
@@ -169,7 +170,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                         </FormGroup>
                         <FormGroup>
                           <FormLabel title="質問タイトル" />
-                          {questions.map((_, idx) => {
+                          {questions?.map((_, idx) => {
                             return (
                               <TextField
                                 name={`question_data.questions[${idx}].question_title`}
@@ -179,18 +180,41 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                         </FormGroup>
                         <FormGroup>
                           <FormLabel title="選択肢" />
-                          <TextFieldColumn>
-                            <AddTextField />
-                            <PopMenu>
-                              <Icon type="dots" />
-                              <ul className="popMenu__select">
-                                <li>
-                                  <button type="button">削除</button>
-                                </li>
-                              </ul>
-                            </PopMenu>
-                          </TextFieldColumn>
-                          <AddField>入力エリアを追加する</AddField>
+
+                          <FieldArray
+                            name="question_data.questions.choices"
+                            render={(arrayHelpers) => (
+                              <>
+                                <TextFieldColumn>
+                                  {questions?.map((question, idx) => {
+                                    return (
+                                      <AddTextField
+                                        name={`question_data.questions[${idx}].choices[${idx}].choice_title`}
+                                      />
+                                    )
+                                  })}
+                                  <PopMenu>
+                                    <Icon type="dots" />
+                                    <ul className="popMenu__select">
+                                      <li>
+                                        <button type="button">削除</button>
+                                      </li>
+                                    </ul>
+                                  </PopMenu>
+                                </TextFieldColumn>
+                                <AddField
+                                  onClick={() =>
+                                    arrayHelpers.push({
+                                      choice_uuid: null,
+                                      choice_title: null,
+                                    })
+                                  }
+                                >
+                                  入力エリアを追加する
+                                </AddField>
+                              </>
+                            )}
+                          />
                         </FormGroup>
                         <QuestionCheckBound>
                           <Icon type="trash" />
@@ -198,7 +222,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                             <span className="c-sortIcon c-sortIcon--up" />
                             <span className="c-sortIcon c-sortIcon--down" />
                           </div>
-                          {questions.map((question, idx) => {
+                          {questions?.map((question, idx) => {
                             return (
                               <CheckBox
                                 label="必須"
