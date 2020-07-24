@@ -50,6 +50,9 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
   const TextFieldColumn = styled.div`
     display: flex;
     justify-content: space-between;
+    :not(:last-child) {
+      margin-bottom: 8px;
+    }
   `
   const PopMenu = styled.ul`
     display: flex;
@@ -143,14 +146,13 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
     display: flex;
     justify-content: center;
     align-items: center;
-    svg { 
-      width: 14px; 
+    svg {
+      width: 14px;
       margin-right: 8px;
     }
-    path { 
+    path {
       fill: #818181;
-    } 
-  }
+    }
   `
   return (
     <Formik
@@ -177,12 +179,12 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                 </FormGroup>
                 <FormGroup>
                   <FormLabel title="質問内容" require />
-                  {questions?.map((question, idx) => {
-                    return (
-                      <FieldArray
-                        name="question_data"
-                        render={(arrayHelpers) => (
-                          <>
+                  <FieldArray
+                    name="question_data.questions"
+                    render={(arrayHelpers) =>
+                      questions.map((question, idx) => {
+                        return (
+                          <React.Fragment key={idx}>
                             <QuestionBox>
                               <FormGroup>
                                 <FormLabel title="質問の形式" />
@@ -201,37 +203,64 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                               </FormGroup>
                               <FormGroup>
                                 <FormLabel title="選択肢" />
-                                <>
-                                  <TextFieldColumn>
-                                    <>
-                                      <AddTextField
-                                        key={idx}
-                                        name={`question_data.questions[${idx}].choices[${idx}].choice_title`}
-                                      />
-                                      <PopMenu>
-                                        <Icon type="dots" />
-                                        <ul className="popMenu__select">
-                                          <li>
-                                            <button type="button">削除</button>
-                                          </li>
-                                        </ul>
-                                      </PopMenu>
-                                    </>
-                                  </TextFieldColumn>
-                                  <AddField
-                                    onClick={() =>
-                                      arrayHelpers.push({
-                                        choice_uuid: null,
-                                        choice_title: null,
-                                      })
-                                    }
-                                  >
-                                    入力エリアを追加する
-                                  </AddField>
-                                </>
+                                <FieldArray
+                                  name={`question_data.questions[${idx}].choices`}
+                                  render={(arrayHelpers) =>
+                                    question.choices.map((choice, cidx) => {
+                                      return (
+                                        <React.Fragment key={cidx}>
+                                          <TextFieldColumn>
+                                            <AddTextField
+                                              key={cidx}
+                                              name={`question_data.questions[${idx}].choices[${cidx}].choice_title`}
+                                            />
+                                            {question.choices.length > 1 && (
+                                              <PopMenu>
+                                                <Icon type="dots" />
+                                                <ul className="popMenu__select">
+                                                  <li>
+                                                    <button
+                                                      key={cidx}
+                                                      type="button"
+                                                      onClick={() => {
+                                                        arrayHelpers.remove(
+                                                          cidx
+                                                        )
+                                                      }}
+                                                    >
+                                                      削除
+                                                    </button>
+                                                  </li>
+                                                </ul>
+                                              </PopMenu>
+                                            )}
+                                          </TextFieldColumn>
+                                          {question.choices.length - 1 ===
+                                            cidx && (
+                                            <AddField
+                                              onClick={() =>
+                                                arrayHelpers.push({
+                                                  choice_uuid: null,
+                                                  choice_title: null,
+                                                })
+                                              }
+                                            >
+                                              入力エリアを追加する
+                                            </AddField>
+                                          )}
+                                        </React.Fragment>
+                                      )
+                                    })
+                                  }
+                                />
                               </FormGroup>
                               <QuestionCheckBound>
-                                <Icon type="trash" />
+                                {questions.length > 1 && (
+                                  <Icon
+                                    type="trash"
+                                    onClick={() => arrayHelpers.remove(idx)}
+                                  />
+                                )}
                                 <div className="sortArea">
                                   <span className="c-sortIcon c-sortIcon--up" />
                                   <span className="c-sortIcon c-sortIcon--down" />
@@ -244,19 +273,34 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                                 />
                               </QuestionCheckBound>
                             </QuestionBox>
-                            <AddButton
-                              onClick={() => arrayHelpers.push(initialValues)}
-                            >
-                              <AddQuestion>
-                                <Icon type="plus" />
-                                質問を追加する
-                              </AddQuestion>
-                            </AddButton>
-                          </>
-                        )}
-                      />
-                    )
-                  })}
+                            {questions.length - 1 === idx && (
+                              <AddButton
+                                onClick={() =>
+                                  arrayHelpers.push({
+                                    question_uuid: null,
+                                    question_type: 'textarea',
+                                    question_title: null,
+                                    choices: [
+                                      {
+                                        choice_uuid: null,
+                                        choice_title: null,
+                                      },
+                                    ],
+                                    required: false,
+                                  })
+                                }
+                              >
+                                <AddQuestion>
+                                  <Icon type="plus" />
+                                  質問を追加する
+                                </AddQuestion>
+                              </AddButton>
+                            )}
+                          </React.Fragment>
+                        )
+                      })
+                    }
+                  />
                 </FormGroup>
               </div>
               <div className="part">
