@@ -119,9 +119,38 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
       cursor: pointer;
     }
     .sortArea {
+      & + div {
+        width: auto;
+      }
       display: flex;
-      .c-sortIcon:not(:first-child) {
-        margin-left: 20px;
+      .c-sortIcon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        border: 2px solid ${({ theme }) => theme.colors.mainC};
+        border-radius: 50%;
+        cursor: pointer;
+        ::before {
+          position: absolute;
+          right: 4px;
+          border: 6px solid transparent;
+          border-radius: 20%;
+          content: '';
+        }
+        :not(:first-child) {
+          margin-left: 20px;
+        }
+      }
+      .c-sortIcon--up::before {
+        top: 0;
+        border-bottom: 8px solid ${({ theme }) => theme.colors.mainC};
+      }
+      .c-sortIcon--down::before {
+        bottom: -1px;
+        border-top: 8px solid ${({ theme }) => theme.colors.mainC};
       }
     }
   `
@@ -151,8 +180,14 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
       margin-right: 8px;
     }
     path {
-      fill: #818181;
+      fill: ${({ theme }) => theme.colors.mainC};
     }
+  `
+
+  const RequireCheck = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
   `
   return (
     <Formik
@@ -261,16 +296,34 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                                     onClick={() => arrayHelpers.remove(idx)}
                                   />
                                 )}
-                                <div className="sortArea">
-                                  <span className="c-sortIcon c-sortIcon--up" />
-                                  <span className="c-sortIcon c-sortIcon--down" />
-                                </div>
-                                <CheckBox
-                                  key={idx}
-                                  label="必須"
-                                  name={`question_data.questions[${idx}].required`}
-                                  value="required"
-                                />
+                                {questions.length !== 1 && (
+                                  <div className="sortArea">
+                                    {idx !== 0 && (
+                                      <span
+                                        className="c-sortIcon c-sortIcon--up"
+                                        onClick={() => {
+                                          arrayHelpers.move(idx, idx - 1)
+                                        }}
+                                      />
+                                    )}
+                                    {questions.length !== idx + 1 && (
+                                      <span
+                                        className="c-sortIcon c-sortIcon--down"
+                                        onClick={() => {
+                                          arrayHelpers.move(idx, idx + 1)
+                                        }}
+                                      />
+                                    )}
+                                  </div>
+                                )}
+                                <RequireCheck>
+                                  <CheckBox
+                                    key={idx}
+                                    label="必須"
+                                    name={`question_data.questions[${idx}].required`}
+                                    value="required"
+                                  />
+                                </RequireCheck>
                               </QuestionCheckBound>
                             </QuestionBox>
                             {questions.length - 1 === idx && (
