@@ -126,6 +126,32 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
     text-align: center;
     padding: 32px 0;
   `
+
+  const AddButton = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 16px;
+    border: 2px dashed #b9b9b9;
+    border-radius: 8px;
+    cursor: pointer;
+  `
+
+  const AddQuestion = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg { 
+      width: 14px; 
+      margin-right: 8px;
+    }
+    path { 
+      fill: #818181;
+    } 
+  }
+  `
   return (
     <Formik
       initialValues={initialValues}
@@ -151,90 +177,86 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                 </FormGroup>
                 <FormGroup>
                   <FormLabel title="質問内容" require />
-
-                  <FieldArray
-                    name="question_data"
-                    render={(arrayHelpers) => (
-                      <QuestionBox>
-                        <FormGroup>
-                          <FormLabel title="質問の形式" />
-                          {questions?.map((question, idx) => {
-                            return (
-                              <SelectBox
-                                key={idx}
-                                name={`question_data.questions[${idx}].question_type`}
-                                items={questionTypes}
-                              />
-                            )
-                          })}
-                        </FormGroup>
-                        <FormGroup>
-                          <FormLabel title="質問タイトル" />
-                          {questions?.map((_, idx) => {
-                            return (
-                              <TextField
-                                name={`question_data.questions[${idx}].question_title`}
-                              />
-                            )
-                          })}
-                        </FormGroup>
-                        <FormGroup>
-                          <FormLabel title="選択肢" />
-
-                          <FieldArray
-                            name="question_data.questions.choices"
-                            render={(arrayHelpers) => (
-                              <>
-                                <TextFieldColumn>
-                                  {questions?.map((question, idx) => {
-                                    return (
+                  {questions?.map((question, idx) => {
+                    return (
+                      <FieldArray
+                        name="question_data"
+                        render={(arrayHelpers) => (
+                          <>
+                            <QuestionBox>
+                              <FormGroup>
+                                <FormLabel title="質問の形式" />
+                                <SelectBox
+                                  key={idx}
+                                  name={`question_data.questions[${idx}].question_type`}
+                                  items={questionTypes}
+                                />
+                              </FormGroup>
+                              <FormGroup>
+                                <FormLabel title="質問タイトル" />
+                                <TextField
+                                  key={idx}
+                                  name={`question_data.questions[${idx}].question_title`}
+                                />
+                              </FormGroup>
+                              <FormGroup>
+                                <FormLabel title="選択肢" />
+                                <>
+                                  <TextFieldColumn>
+                                    <>
                                       <AddTextField
+                                        key={idx}
                                         name={`question_data.questions[${idx}].choices[${idx}].choice_title`}
                                       />
-                                    )
-                                  })}
-                                  <PopMenu>
-                                    <Icon type="dots" />
-                                    <ul className="popMenu__select">
-                                      <li>
-                                        <button type="button">削除</button>
-                                      </li>
-                                    </ul>
-                                  </PopMenu>
-                                </TextFieldColumn>
-                                <AddField
-                                  onClick={() =>
-                                    arrayHelpers.push({
-                                      choice_uuid: null,
-                                      choice_title: null,
-                                    })
-                                  }
-                                >
-                                  入力エリアを追加する
-                                </AddField>
-                              </>
-                            )}
-                          />
-                        </FormGroup>
-                        <QuestionCheckBound>
-                          <Icon type="trash" />
-                          <div className="sortArea">
-                            <span className="c-sortIcon c-sortIcon--up" />
-                            <span className="c-sortIcon c-sortIcon--down" />
-                          </div>
-                          {questions?.map((question, idx) => {
-                            return (
-                              <CheckBox
-                                label="必須"
-                                name={`question_data.questions[${idx}].required`}
-                                value="required"
-                              />
-                            )
-                          })}
-                        </QuestionCheckBound>
-                      </QuestionBox>
-                    )}
-                  />
+                                      <PopMenu>
+                                        <Icon type="dots" />
+                                        <ul className="popMenu__select">
+                                          <li>
+                                            <button type="button">削除</button>
+                                          </li>
+                                        </ul>
+                                      </PopMenu>
+                                    </>
+                                  </TextFieldColumn>
+                                  <AddField
+                                    onClick={() =>
+                                      arrayHelpers.push({
+                                        choice_uuid: null,
+                                        choice_title: null,
+                                      })
+                                    }
+                                  >
+                                    入力エリアを追加する
+                                  </AddField>
+                                </>
+                              </FormGroup>
+                              <QuestionCheckBound>
+                                <Icon type="trash" />
+                                <div className="sortArea">
+                                  <span className="c-sortIcon c-sortIcon--up" />
+                                  <span className="c-sortIcon c-sortIcon--down" />
+                                </div>
+                                <CheckBox
+                                  key={idx}
+                                  label="必須"
+                                  name={`question_data.questions[${idx}].required`}
+                                  value="required"
+                                />
+                              </QuestionCheckBound>
+                            </QuestionBox>
+                            <AddButton
+                              onClick={() => arrayHelpers.push(initialValues)}
+                            >
+                              <AddQuestion>
+                                <Icon type="plus" />
+                                質問を追加する
+                              </AddQuestion>
+                            </AddButton>
+                          </>
+                        )}
+                      />
+                    )
+                  })}
                 </FormGroup>
               </div>
               <div className="part">
