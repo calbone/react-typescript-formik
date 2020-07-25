@@ -4,26 +4,28 @@ import { useField } from 'formik'
 import TextFieldStyle from './style'
 
 type AddTextFieldProps = {
+  className?: string
   name: string
   placeholder?: string
 }
 
-const AddTextField: React.FC<AddTextFieldProps> = ({
+const AddTextFieldComponent: React.FC<AddTextFieldProps> = ({
   name,
+  className,
   placeholder,
-  ...restProps
 }) => {
   const [field] = useField(name)
-  return <StyledTextField {...field} {...restProps} placeholder={placeholder} />
+  const { value, ...restField } = field
+  return (
+    <div className={className}>
+      <input type="text" placeholder={placeholder} {...restField} />
+    </div>
+  )
 }
 
-const StyledTextField = styled.input.attrs(({ name, placeholder }) => ({
-  type: 'type',
-  name,
-  placeholder,
-}))`
+const StyledAddTextField = styled(AddTextFieldComponent)`
   ${TextFieldStyle}
   width: 95%;
 `
 
-export default AddTextField
+export default StyledAddTextField

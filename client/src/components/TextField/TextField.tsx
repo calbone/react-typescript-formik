@@ -4,28 +4,30 @@ import { useField } from 'formik'
 import TextFieldStyle from './style'
 
 type TextFieldProps = {
+  className?: string
   name: string
   placeholder?: string
 }
 
-const TextField: React.FC<TextFieldProps> = ({ name, ...restProps }) => {
+const TextFieldComponent: React.FC<TextFieldProps> = ({
+  name,
+  className,
+  placeholder,
+}) => {
   const [field, meta] = useField(name)
+  const { value, ...restField } = field
   return (
-    <>
-      <StyledTextField {...field} {...restProps} />
+    <div className={className}>
+      <input type="text" placeholder={placeholder} {...restField} />
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </>
+    </div>
   )
 }
 
-const StyledTextField = styled.input.attrs(({ name, placeholder }) => ({
-  type: 'type',
-  name,
-  placeholder,
-}))`
+const StyledTextField = styled(TextFieldComponent)`
   ${TextFieldStyle}
 `
 
-export default TextField
+export default StyledTextField
