@@ -12,16 +12,16 @@ type QuestionTypes =
 
 type AnswerLimitStatus = 'once' | 'unlimited'
 
+export interface Choice {
+  choice_uuid?: string | null
+  choice_title?: string | null
+}
+
 interface Question {
   question_uuid?: string | null
   question_type: QuestionTypes
   question_title: string | null
-  choices: [
-    {
-      choice_uuid?: string | null
-      choice_title?: string | null
-    }
-  ]
+  choices: Choice[]
   required?: boolean
 }
 
