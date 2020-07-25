@@ -26,10 +26,11 @@ type IconProps = {
     | 'warning'
     | 'help'
     | 'assignment'
+  onClick?: () => void
 }
 
-const Icon: React.FC<IconProps> = ({ type }) => {
-  let icon: JSX.Element | null
+const Icon: React.FC<IconProps> = ({ type, onClick }) => {
+  let icon: JSX.Element
 
   switch (type) {
     case 'search':
@@ -127,7 +128,11 @@ const Icon: React.FC<IconProps> = ({ type }) => {
       break
     case 'trash':
       icon = (
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          onClick={onClick}
+        >
           <path
             d="M286,263h-8a2,2,0,0,1-2-2V251a2,2,0,0,1,2-2h8a2,2,0,0,1,2,2v10A2,2,0,0,1,286,263Zm2-15H276a1,1,0,1,1,0-2h2.5l.71-.71a1.011,1.011,0,0,1,.7-.29h4.18a1.01,1.01,0,0,1,.7.29l.71.71H288a1,1,0,1,1,0,2Z"
             transform="translate(-270 -242)"
@@ -295,7 +300,8 @@ const Icon: React.FC<IconProps> = ({ type }) => {
       )
       break
     default:
-      icon = null
+      const iconTypes: never = type
+      throw new Error(`${iconTypes} is not type.`)
   }
   return icon
 }
