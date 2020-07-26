@@ -1,33 +1,43 @@
 type DisclosureScope = "follower" | "all";
 
+type QuestionTypes =
+  | "textarea"
+  | "textbox"
+  | "selectbox"
+  | "radio"
+  | "checkbox"
+  | "radio"
+  | "mail"
+  | "address";
+
 type AnswerLimitStatus = "once" | "unlimited";
 
-type Choice = {
-  choice_uuid?: string | null;
-  choice_title?: string | null;
-};
+interface Choice {
+  choice_uuid: string | null;
+  choice_title: string | null;
+}
 
-type Question = {
-  choices?: Choice[];
-  required?: boolean;
-  question_type?: "textbox" | "selectbox" | "radio" | "textbox" | null;
-  question_uuid?: string | null;
-  question_title?: string | null;
-};
+interface Question {
+  question_uuid: string | null;
+  question_type: QuestionTypes;
+  question_title: string | null;
+  choices: Choice[];
+  required: boolean;
+}
+
+type QuestionData = Record<"questions", Question[]>;
 
 export interface Questionnaire {
   id?: number;
   user_id?: number;
   title?: string;
+  question_data: QuestionData;
+  answer_limit_status: AnswerLimitStatus;
   body?: string;
-  disclosure_scope?: DisclosureScope;
   show_status: boolean;
+  disclosure_scope?: DisclosureScope;
   show_start_datetime: Date;
   show_end_datetime: Date;
-  answer_limit_status: AnswerLimitStatus;
   finish_body: string;
   answer_count: number;
-  question_data: {
-    questions: Question[];
-  };
 }

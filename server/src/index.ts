@@ -3,7 +3,8 @@ import cors from "cors";
 // import uuidv4 from "uuid/v4";
 import Questionnaires from "./data/questionnaire/list.json";
 import { Questionnaire } from "./data/questionnaire/types";
-import answersData from "./data/answers";
+import answerSummaryData from "./data/answerSummary";
+import { AnswerSummary } from "./data/answerSummary/types";
 
 const app = Express();
 
@@ -13,43 +14,23 @@ app.use(Express.urlencoded({ extended: true }));
 // cors対応
 app.use(cors());
 
-type Summary = (
-  | string
-  | {
-      choice_title: string;
-      choice_count: number;
-    }
-  | null
-)[];
-type FormType = "nickname" | "choice" | "selectbox" | "text";
-type AnswerDetailSummary = {
-  question_uuid: string;
-  question_title: string;
-  type: FormType;
-  answer_count: number;
-  summary: Summary;
-};
-
-type AnswerDetailSummaries = {
-  answer_detail_summary: AnswerDetailSummary;
-};
-
-type AnswerSummary = {
-  total_count: number;
-  confidence_available: boolean;
-  answer_detail_summaries: AnswerDetailSummaries[];
-};
-
 // ルーティング設定
 app.get("/api/v2/current_user/owner/questionnaires", (req, res) => {
   const data: Questionnaire[] = Questionnaires.data;
   res.json(data);
 });
 
+app.get("/api/v2/current_user/owner/questionnaires/:id", (req, res) => {
+  const data: Questionnaire[] = Questionnaires.data.filter((Questionnaire) => {
+    return Questionnaire.id === Number(req.params.id);
+  });
+  res.json(data[0]);
+});
+
 app.get(
   "/api/v2/current_user/owner/questionnaires/:id/answer_summary",
   (req, res) => {
-    const data: AnswerSummary = answersData.questionnaire_result;
+    const data: AnswerSummary = answerSummaryData;
     res.json(data);
   }
 );

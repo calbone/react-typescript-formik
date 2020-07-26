@@ -5,18 +5,21 @@
       "user_id": 7738,
       "title": "【募集】1103BDParty「企画アイデア＆RIRIへ\nの質問」応募フォーム",
       "body":
-        "【応募事項】 <br>・応募は会員様お一人１回までとなります。  <br>応募後の内容変更は受付できませんので、 お間違いがないか確かめの上、ご応募ください。",
+        "【応募事項】 \n・応募は会員様お一人１回までとなります。\n応募後の内容変更は受付できませんので、 お間違いがないか確かめの上、ご応募ください。",
       "disclosure_scope": "follower",
       "show_status": false,
       "show_start_datetime": "2019-09-20T02:15:00.000Z",
       "show_end_datetime": "2019-10-20T11:11:11.000+09:00",
-      "answer_limit_status": "once",
+      "answer_limit_status": "unlimited",
       "finish_body":
         "ご応募を受付いたしました。\\n この度はご応募いただきありがとうございました。",
       "answer_count": 14,
       "question_data": {
         "questions": [
           {
+            "question_uuid": "q37df325a1d544c7b194c6c3d777a1c7",
+            "question_type": "selectbox",
+            "question_title": "どのガムが好き？",
             "choices": [
               {
                 "choice_uuid": "c142bed494804c65a7d722892aaac219",
@@ -27,12 +30,12 @@
                 "choice_title": "BLACK BLACK"
               }
             ],
-            "required": true,
-            "question_type": "selectbox",
-            "question_uuid": "q37df325a1d544c7b194c6c3d777a1c7",
-            "question_title": "どのガムが好き？"
+            "required": true
           },
           {
+            "question_uuid": "q72df325a1d544c7b194c6c3d777a1c7",
+            "question_type": "radio",
+            "question_title": "どのタバコが好き？",
             "choices": [
               {
                 "choice_uuid": "c342bed494804c65a7d722892aaac219",
@@ -43,10 +46,7 @@
                 "choice_title": "SEVEN STAR"
               }
             ],
-            "required": false,
-            "question_type": "radio",
-            "question_uuid": "q72df325a1d544c7b194c6c3d777a1c7",
-            "question_title": "どのタバコが好き？"
+            "required": false
           },
           {
             "required": false,
@@ -55,6 +55,9 @@
             "question_title": "何か要望があればどうぞ"
           },
           {
+            "question_uuid": "q77df325a1d544c7b194c6c3d777a1c7",
+            "question_type": "checkbox",
+            "question_title": "欲しいものは？",
             "choices": [
               {
                 "choice_uuid": "c142bed494804c65a7d722892aaac219",
@@ -65,10 +68,7 @@
                 "choice_title": "使い終わったピック"
               }
             ],
-            "required": true,
-            "question_type": "checkbox",
-            "question_uuid": "q77df325a1d544c7b194c6c3d777a1c7",
-            "question_title": "欲しいものは？"
+            "required": true
           },
           {
             "required": false,
@@ -94,6 +94,9 @@
       "question_data": {
         "questions": [
           {
+            "question_uuid": "277df325-a1d5-44c7-b194-c6c3d777a1c7",
+            "question_type": "checkbox",
+            "question_title": "欲しいものは？",
             "choices": [
               {
                 "choice_uuid": "8142bed4-9480-4c65-a7d7-22892aaac219",
@@ -108,10 +111,7 @@
                 "choice_title": "昔使ってたメガネ"
               }
             ],
-            "required": false,
-            "question_type": "checkbox",
-            "question_uuid": "277df325-a1d5-44c7-b194-c6c3d777a1c7",
-            "question_title": "欲しいものは？"
+            "required": false
           },
           {
             "required": false,
