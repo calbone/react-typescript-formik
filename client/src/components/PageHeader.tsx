@@ -6,12 +6,17 @@ import Icon from './Icon'
 type PageHeaderProps = {
   label: string
   to?: string
+  onClick?: () => void
 }
 
-const PageHeaderComponent: React.FC<PageHeaderProps> = ({ label, to }) => {
+const PageHeaderComponent: React.FC<PageHeaderProps> = ({
+  label,
+  to,
+  onClick,
+}) => {
   return (
     <PageHeader>
-      <PageHeaderReturn to={to || '/'}>
+      <PageHeaderReturn to={to || '/'} onClick={onClick}>
         <Icon type="arrow" />
         戻る
       </PageHeaderReturn>
