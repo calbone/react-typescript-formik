@@ -19,18 +19,16 @@ const CheckBoxComponent: React.FC<CheckBoxProps> = ({
   const [field] = useField(name)
   return (
     <div className={className}>
-      <div className="item">
-        <input
-          type="checkbox"
-          id={value}
-          className="input"
-          defaultChecked={defaultChecked}
-          {...field}
-        />
-        <label htmlFor={value} className="label">
-          {label}
-        </label>
-      </div>
+      <input
+        type="checkbox"
+        id={String(value)}
+        className="input"
+        defaultChecked={defaultChecked}
+        {...field}
+      />
+      <label htmlFor={String(value)} className="label">
+        {label}
+      </label>
     </div>
   )
 }
