@@ -18,7 +18,7 @@ const SelectBoxComponent: React.FC<SelectBoxProps> = ({
   items,
   name,
 }) => {
-  const [field] = useField(name)
+  const [field, meta] = useField(name)
   return (
     <div className={className}>
       <select {...field}>
@@ -28,6 +28,9 @@ const SelectBoxComponent: React.FC<SelectBoxProps> = ({
           </option>
         ))}
       </select>
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
     </div>
   )
 }

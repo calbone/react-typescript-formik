@@ -17,12 +17,14 @@ const TextFieldComponent: React.FC<TextFieldProps> = ({
   const [field, meta] = useField(name)
   const { value, ...restField } = field
   return (
-    <div className={className}>
-      <input type="text" placeholder={placeholder} {...restField} />
+    <>
+      <div className={className}>
+        <input type="text" placeholder={placeholder} {...restField} />
+      </div>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </div>
+    </>
   )
 }
 
