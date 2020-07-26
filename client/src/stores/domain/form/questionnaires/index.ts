@@ -6,6 +6,7 @@ import {
 } from 'api/requests/questionnaire'
 
 // ActionType
+const CLEAR_QUESTIONNAIRE = 'CLEAR_QUESTIONNAIRE' as const
 const READ_QUESTIONNAIRES = 'READ_QUESTIONNAIRES' as const
 const READ_QUESTIONNAIRES_SUCCESS = 'READ_QUESTIONNAIRES_SUCCESS' as const
 const READ_QUESTIONNAIRES_FAILURE = 'READ_QUESTIONNAIRES_FAILURE' as const
@@ -14,8 +15,14 @@ const READ_QUESTIONNAIRE_SUCCESS = 'READ_QUESTIONNAIRE_SUCCESS' as const
 const READ_QUESTIONNAIRE_FAILURE = 'READ_QUESTIONNAIRE_FAILURE' as const
 
 // ActionCreator
+export const clearQuestionnaire = () => ({
+  type: CLEAR_QUESTIONNAIRE,
+  // TODO: payloadはいらないがつけないとtypeエラーになる
+  payload: '',
+})
 export const readQuestionnaires = () => ({
   type: READ_QUESTIONNAIRES,
+  // TODO: payloadはいらないがつけないとtypeエラーになる
   payload: '',
 })
 export const readQuestionnairesSuccess = (res: Questionnaire) => ({
@@ -42,6 +49,7 @@ export const readQuestionnaireFailure = (err: any) => ({
   payload: err,
 })
 
+type ClearQuestionnaire = ReturnType<typeof clearQuestionnaire>
 type ReadQuestionnaires = ReturnType<typeof readQuestionnaires>
 type ReadQuestionnairesSuccess = ReturnType<typeof readQuestionnairesSuccess>
 type ReadQuestionnairesFailure = ReturnType<typeof readQuestionnairesFailure>
@@ -50,6 +58,7 @@ type ReadQuestionnaireSuccess = ReturnType<typeof readQuestionnaireSuccess>
 type ReadQuestionnaireFailure = ReturnType<typeof readQuestionnaireFailure>
 
 export type ActionTypes =
+  | ClearQuestionnaire
   | ReadQuestionnaires
   | ReadQuestionnairesSuccess
   | ReadQuestionnairesFailure
@@ -82,11 +91,11 @@ export const questionnaires = (
 ): QuestionnaireState => {
   const { type, payload } = action
   switch (type) {
-    // case ActionTypes.CLEAR_QUESTIONNAIRES:
-    //   return {
-    //     ...initialState,
-    //     questionnaires: state.questionnaires
-    //   }
+    case CLEAR_QUESTIONNAIRE:
+      return {
+        ...state,
+        questionnaire: null,
+      }
     // case ActionTypes.CREATE_QUESTIONNAIRES:
     //   return {
     //     ...state,

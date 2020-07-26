@@ -3,9 +3,16 @@ import { takeEvery, call, put } from 'redux-saga/effects'
 import { readAnswerSummaryRequest } from 'api/requests/answerSummary'
 
 // action
+export const CLEAR_ANSWER_SUMMARY = 'CLEAR_ANSWER_SUMMARY' as const
 export const READ_ANSWER_SUMMARY = 'READ_ANSWER_SUMMARY' as const
 export const READ_ANSWER_SUMMARY_SUCCESS = 'READ_ANSWER_SUMMARY_SUCCESS' as const
 export const READ_ANSWER_SUMMARY_FAILURE = 'READ_ANSWER_SUMMARY_FAILURE' as const
+
+export const clearAnswerSummary = () => ({
+  type: CLEAR_ANSWER_SUMMARY,
+  // TODO: payloadはいらないがつけないとtypeエラーになる
+  payload: '',
+})
 
 export const readAnswerSummary = (id: string) => ({
   type: READ_ANSWER_SUMMARY,
@@ -20,10 +27,12 @@ export const readAnswerSummaryFailure = (err: any) => ({
   payload: err,
 })
 
+type ClearAnswerSummary = ReturnType<typeof clearAnswerSummary>
 type ReadAnswerSummary = ReturnType<typeof readAnswerSummary>
 type ReadAnswerSummarySuccess = ReturnType<typeof readAnswerSummarySuccess>
 type ReadAnswerSummaryFailure = ReturnType<typeof readAnswerSummaryFailure>
 export type ActionTypes =
+  | ClearAnswerSummary
   | ReadAnswerSummary
   | ReadAnswerSummarySuccess
   | ReadAnswerSummaryFailure
@@ -40,6 +49,11 @@ const initialState: AnswerSummaryState = {
 export const answerSummary = (state = initialState, action: ActionTypes) => {
   const { type, payload } = action
   switch (type) {
+    case CLEAR_ANSWER_SUMMARY:
+      return {
+        ...state,
+        ...initialState,
+      }
     case READ_ANSWER_SUMMARY:
       return { ...state }
     case READ_ANSWER_SUMMARY_SUCCESS:

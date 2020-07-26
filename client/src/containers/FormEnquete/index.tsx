@@ -1,7 +1,13 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { readQuestionnaire } from 'stores/domain/form/questionnaires'
-import { readAnswerSummary } from 'stores/domain/form/answerSummary'
+import {
+  clearQuestionnaire,
+  readQuestionnaire,
+} from 'stores/domain/form/questionnaires'
+import {
+  clearAnswerSummary,
+  readAnswerSummary,
+} from 'stores/domain/form/answerSummary'
 import FormEnquete, {
   FormEnqueteDispathProps,
   FormEnqueteStateProps,
@@ -19,6 +25,8 @@ const mapStateToProps = ({
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): FormEnqueteDispathProps => ({
+  clearQuestionnaire: () => dispatch(clearQuestionnaire()),
+  clearAnswerSummary: () => dispatch(clearAnswerSummary()),
   readQuestionnaire: (id) => dispatch(readQuestionnaire(id)),
   readAnswerSummary: (id) => dispatch(readAnswerSummary(id)),
 })

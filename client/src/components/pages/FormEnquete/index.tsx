@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import styled from 'styled-components'
 import Icon from 'components/Icon'
 import Content from 'components/Content'
@@ -17,20 +17,24 @@ type TabNameTypes = 'edit' | 'answer'
 const FormEnquete: React.FC<MergeProps> = ({
   questionnaire,
   answerSummary,
+  clearQuestionnaire,
+  clearAnswerSummary,
   readQuestionnaire,
   readAnswerSummary,
-  match,
+  match: {
+    params: { id },
+  },
 }) => {
   const [isModal, setModal] = useState(false)
   const [isSubModal, setSubModal] = useState(false)
   const [tabName, setTabName] = useState('edit')
   const [copyText, setCopyText] = useState('')
   useEffect(() => {
-    if (match.params.id) {
-      readQuestionnaire(match.params.id)
-      readAnswerSummary(match.params.id)
+    if (id) {
+      readQuestionnaire(id)
+      readAnswerSummary(id)
     }
-  }, [readQuestionnaire, readAnswerSummary, match.params.id])
+  }, [readQuestionnaire, readAnswerSummary, id])
 
   const handleChangeTab = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -71,7 +75,7 @@ const FormEnquete: React.FC<MergeProps> = ({
     if (tabName === 'answer' && answerSummary) {
       return <Result answerSummary={answerSummary} />
     }
-    return <Input initialValues={initialValues} />
+    return <Input initialValues={initialValues} id={id} />
   }
 
   const EnqueteHeader = styled.div`
@@ -180,11 +184,15 @@ const FormEnquete: React.FC<MergeProps> = ({
       }
     }
   `
+  const handleClear = useCallback(() => {
+    clearQuestionnaire()
+    clearAnswerSummary()
+  }, [clearQuestionnaire, clearAnswerSummary])
   return (
     <React.Fragment>
-      <PageHeader label="フォーム詳細" />
+      <PageHeader label="フォーム詳細" onClick={handleClear} />
       <Content>
-        {match.params.id && (
+        {id && (
           <React.Fragment>
             <EnqueteHeader>
               <div className="title">{questionnaire?.title}</div>
