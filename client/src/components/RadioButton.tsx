@@ -9,8 +9,8 @@ type RadioButtonProps = {
   label?: string
 }
 const RadioButtonComponent: React.FC<RadioButtonProps> = ({
-  className,
   label,
+  className,
   name,
   value,
 }) => {
@@ -23,6 +23,7 @@ const RadioButtonComponent: React.FC<RadioButtonProps> = ({
         className="input"
         {...field}
         value={value}
+        checked={field.value === value}
       />
       <label htmlFor={value} className="label">
         {label}
@@ -31,7 +32,7 @@ const RadioButtonComponent: React.FC<RadioButtonProps> = ({
   )
 }
 
-const RadioButton = styled(RadioButtonComponent)`
+const StyledRadioButton = styled(RadioButtonComponent)`
   display: flex;
   flex-wrap: wrap;
   margin-right: 24px;
@@ -89,4 +90,4 @@ const RadioButton = styled(RadioButtonComponent)`
   }
 `
 
-export default RadioButton
+export default StyledRadioButton
