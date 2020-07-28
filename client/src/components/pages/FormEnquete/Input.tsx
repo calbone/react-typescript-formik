@@ -13,9 +13,11 @@ import Accordion from 'components/Accordion'
 import { Button } from 'components/Button'
 import Icon from 'components/Icon'
 import { disclosureTypes, questionTypes } from 'constants/selectValues'
+import * as Yup from 'yup'
 
 type InitialValuesProps = {
   initialValues: Questionnaire
+  id?: string
 }
 const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
   const FormQuestionBox = styled.div`
@@ -189,9 +191,46 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
     justify-content: flex-end;
     width: 100%;
   `
+  const FormDetailSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, 'Too Short!')
+      .required('フォームタイルを入力してください'),
+    question_data: Yup.object().shape({
+      questions: Yup.array().of(
+        Yup.object().shape({
+          question_type: Yup.string().oneOf([
+            'textarea',
+            'textbox',
+            'selectbox',
+            'radio',
+            'checkbox',
+            'radio',
+            'mail',
+            'address',
+          ]),
+          question_title: Yup.string()
+            .required('質問タイトルを入力してください')
+            .nullable(),
+        })
+      ),
+    }),
+  })
+  const questionTypeChoice = (type: string) => {
+    switch (type) {
+      case 'selectbox':
+        return true
+      case 'radio':
+        return true
+      case 'checkbox':
+        return true
+      default:
+        return false
+    }
+  }
   return (
     <Formik
       initialValues={initialValues}
+      validationSchema={FormDetailSchema}
       onSubmit={(values, actions) => {
         setTimeout(() => {
           alert(JSON.stringify(values, null, 2))
@@ -203,7 +242,6 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
         const {
           question_data: { questions },
         } = props.values
-        console.log('props.values', props.values)
         return (
           <Form>
             <FormQuestionBox>
@@ -236,59 +274,66 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                                   name={`question_data.questions[${idx}].question_title`}
                                 />
                               </FormGroup>
-                              <FormGroup>
-                                <FormLabel title="選択肢" />
-                                <FieldArray
-                                  name={`question_data.questions[${idx}].choices`}
-                                  render={(arrayHelpers) =>
-                                    question.choices.map((choice, cidx) => {
-                                      return (
-                                        <React.Fragment key={cidx}>
-                                          <TextFieldColumn>
-                                            <AddTextField
-                                              key={cidx}
-                                              name={`question_data.questions[${idx}].choices[${cidx}].choice_title`}
-                                            />
-                                            {question.choices.length > 1 && (
-                                              <PopMenu>
-                                                <Icon type="dots" />
-                                                <ul className="popMenu__select">
-                                                  <li>
-                                                    <button
-                                                      key={cidx}
-                                                      type="button"
-                                                      onClick={() => {
-                                                        arrayHelpers.remove(
-                                                          cidx
-                                                        )
-                                                      }}
-                                                    >
-                                                      削除
-                                                    </button>
-                                                  </li>
-                                                </ul>
-                                              </PopMenu>
-                                            )}
-                                          </TextFieldColumn>
-                                          {question.choices.length - 1 ===
-                                            cidx && (
-                                            <AddField
-                                              onClick={() =>
-                                                arrayHelpers.push({
-                                                  choice_uuid: null,
-                                                  choice_title: null,
-                                                })
-                                              }
-                                            >
-                                              入力エリアを追加する
-                                            </AddField>
-                                          )}
-                                        </React.Fragment>
-                                      )
-                                    })
-                                  }
-                                />
-                              </FormGroup>
+                              {question.choices &&
+                                questionTypeChoice(
+                                  props.values.question_data.questions[idx]
+                                    .question_type
+                                ) && (
+                                  <FormGroup>
+                                    <FormLabel title="選択肢" />
+                                    <FieldArray
+                                      name={`question_data.questions[${idx}].choices`}
+                                      render={(arrayHelpers) =>
+                                        question.choices.map((choice, cidx) => {
+                                          return (
+                                            <React.Fragment key={cidx}>
+                                              <TextFieldColumn>
+                                                <AddTextField
+                                                  key={cidx}
+                                                  name={`question_data.questions[${idx}].choices[${cidx}].choice_title`}
+                                                />
+                                                {question.choices.length >
+                                                  1 && (
+                                                  <PopMenu>
+                                                    <Icon type="dots" />
+                                                    <ul className="popMenu__select">
+                                                      <li>
+                                                        <button
+                                                          key={cidx}
+                                                          type="button"
+                                                          onClick={() => {
+                                                            arrayHelpers.remove(
+                                                              cidx
+                                                            )
+                                                          }}
+                                                        >
+                                                          削除
+                                                        </button>
+                                                      </li>
+                                                    </ul>
+                                                  </PopMenu>
+                                                )}
+                                              </TextFieldColumn>
+                                              {question.choices.length - 1 ===
+                                                cidx && (
+                                                <AddField
+                                                  onClick={() =>
+                                                    arrayHelpers.push({
+                                                      choice_uuid: null,
+                                                      choice_title: null,
+                                                    })
+                                                  }
+                                                >
+                                                  入力エリアを追加する
+                                                </AddField>
+                                              )}
+                                            </React.Fragment>
+                                          )
+                                        })
+                                      }
+                                    />
+                                  </FormGroup>
+                                )}
                               <QuestionCheckBound>
                                 {questions.length > 1 && (
                                   <Icon
@@ -321,7 +366,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                                     key={idx}
                                     label="必須"
                                     name={`question_data.questions[${idx}].required`}
-                                    value="required"
+                                    value={String(idx)}
                                   />
                                 </RequireCheck>
                               </QuestionCheckBound>

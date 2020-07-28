@@ -6,7 +6,7 @@ export const defaultValues: Questionnaire = {
     questions: [
       {
         question_uuid: null,
-        question_type: 'textarea',
+        question_type: 'none',
         question_title: null,
         choices: [
           {

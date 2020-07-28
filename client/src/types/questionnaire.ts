@@ -1,6 +1,7 @@
 type DisclosureScope = 'all' | 'follower' | 'paidMember' | 'none'
 
 type QuestionTypes =
+  | 'none'
   | 'textarea'
   | 'textbox'
   | 'selectbox'
@@ -25,13 +26,13 @@ interface Question {
   required?: boolean
 }
 
+type QuestionData = Record<'questions', Question[]>
+
 export interface Questionnaire {
   id?: number
   user_id?: number
   title: string
-  question_data: {
-    questions: Question[]
-  }
+  question_data: QuestionData
   answer_limit_status: AnswerLimitStatus
   body: string
   show_status: boolean
