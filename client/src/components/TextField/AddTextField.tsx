@@ -18,7 +18,12 @@ const AddTextFieldComponent: React.FC<AddTextFieldProps> = ({
   const { value, ...restField } = field
   return (
     <div className={className}>
-      <input type="text" placeholder={placeholder} {...restField} />
+      <input
+        type="text"
+        value={value || undefined}
+        placeholder={placeholder}
+        {...restField}
+      />
     </div>
   )
 }

@@ -19,7 +19,12 @@ const TextFieldComponent: React.FC<TextFieldProps> = ({
   return (
     <>
       <div className={className}>
-        <input type="text" placeholder={placeholder} {...restField} />
+        <input
+          type="text"
+          value={value || undefined}
+          placeholder={placeholder}
+          {...restField}
+        />
       </div>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
