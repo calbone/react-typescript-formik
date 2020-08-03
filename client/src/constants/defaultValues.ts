@@ -1,22 +1,22 @@
-import { Questionnaire } from 'types/questionnaire'
+import { Questionnaire, Choice, Question } from 'types/questionnaire'
+
+export const defaultChoice: Choice = {
+  choice_uuid: null,
+  choice_title: null,
+}
+
+export const defaultQuestion: Question = {
+  question_uuid: null,
+  question_type: 'none',
+  question_title: null,
+  choices: [defaultChoice],
+  required: false,
+}
 
 export const defaultValues: Questionnaire = {
   title: '',
   question_data: {
-    questions: [
-      {
-        question_uuid: null,
-        question_type: 'none',
-        question_title: null,
-        choices: [
-          {
-            choice_uuid: null,
-            choice_title: null,
-          },
-        ],
-        required: false,
-      },
-    ],
+    questions: [defaultQuestion],
   },
   answer_limit_status: 'unlimited',
   body: '',
