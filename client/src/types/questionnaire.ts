@@ -1,13 +1,12 @@
 type DisclosureScope = 'all' | 'follower' | 'paidMember' | 'none'
 
-type QuestionTypes =
+export type QuestionTypes =
   | 'none'
   | 'textarea'
   | 'textbox'
   | 'selectbox'
   | 'radio'
   | 'checkbox'
-  | 'radio'
   | 'mail'
   | 'address'
 
@@ -18,7 +17,7 @@ export interface Choice {
   choice_title?: string | null
 }
 
-interface Question {
+export interface Question {
   question_uuid?: string | null
   question_type: QuestionTypes
   question_title: string | null
