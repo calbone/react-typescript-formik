@@ -3,14 +3,14 @@ import styled from 'styled-components'
 
 interface AccordionProps {
   title: string
-  content: JSX.Element
+  content: JSX.Element | JSX.Element[]
   className?: string
 }
 
 const AccordionComponent: React.FC<AccordionProps> = ({
   title,
   content,
-  className
+  className,
 }) => {
   const [isOpen, setOpen] = useState<boolean>(false)
   const [contentHeight, setHeight] = useState<number | undefined>(0)
@@ -19,7 +19,7 @@ const AccordionComponent: React.FC<AccordionProps> = ({
     setHeight(contentRef.current?.offsetHeight)
   }, [])
   const toggle = () => {
-    setOpen(prev => !prev)
+    setOpen((prev) => !prev)
   }
 
   return (
