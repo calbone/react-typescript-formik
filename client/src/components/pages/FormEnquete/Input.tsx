@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Form, FormikProps, FieldArray, Formik } from 'formik'
 import styled from 'styled-components'
-import { Questionnaire } from 'types/questionnaire'
+import { Questionnaire, QuestionTypes } from 'types/questionnaire'
 import FormLabel from 'components/FormLabel'
 import { TextField, AddTextField } from 'components/TextField'
 import TextArea from 'components/TextArea'
@@ -11,8 +11,10 @@ import RadioButton from 'components/RadioButton'
 import ToggleButton from 'components/ToggleButton'
 import Accordion from 'components/Accordion'
 import { Button } from 'components/Button'
+import DateCalendar from 'components/DateCalendar'
 import Icon from 'components/Icon'
 import { disclosureTypes, questionTypes } from 'constants/selectValues'
+import { defaultChoice, defaultQuestion } from 'constants/defaultValues'
 import * as Yup from 'yup'
 
 type InitialValuesProps = {
@@ -215,7 +217,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
       ),
     }),
   })
-  const questionTypeChoice = (type: string) => {
+  const questionTypeChoice = (type: QuestionTypes) => {
     switch (type) {
       case 'selectbox':
         return true
@@ -318,10 +320,9 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                                                 cidx && (
                                                 <AddField
                                                   onClick={() =>
-                                                    arrayHelpers.push({
-                                                      choice_uuid: null,
-                                                      choice_title: null,
-                                                    })
+                                                    arrayHelpers.push(
+                                                      defaultChoice
+                                                    )
                                                   }
                                                 >
                                                   入力エリアを追加する
@@ -374,18 +375,7 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                             {questions.length - 1 === idx && (
                               <AddButton
                                 onClick={() =>
-                                  arrayHelpers.push({
-                                    question_uuid: null,
-                                    question_type: 'textarea',
-                                    question_title: null,
-                                    choices: [
-                                      {
-                                        choice_uuid: null,
-                                        choice_title: null,
-                                      },
-                                    ],
-                                    required: false,
-                                  })
+                                  arrayHelpers.push(defaultQuestion)
                                 }
                               >
                                 <AddQuestion>
@@ -442,6 +432,16 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                   />
                 </FormGroup>
               </div>
+              <FormQuestionAccordion>
+                <Accordion
+                  title="詳細設定"
+                  content={['show_start_datetime', 'show_end_datetime'].map(
+                    (dateName, idx) => (
+                      <DateCalendar key={idx} name={dateName} />
+                    )
+                  )}
+                />
+              </FormQuestionAccordion>
               <ButtonContainer>
                 <Button valid={true} type="submit" label="登録する" />
               </ButtonContainer>
