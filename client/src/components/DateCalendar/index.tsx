@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import { useField } from 'formik'
+import React, { useCallback } from 'react'
+import { useField, useFormikContext } from 'formik'
 import DatePicker from 'react-datepicker'
+// import dayjs from 'dayjs'
+// import 'dayjs/locale/ja'
 import styled from 'styled-components'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -13,12 +15,24 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
   name,
   className,
 }) => {
+  const { setFieldValue } = useFormikContext()
   const [field] = useField(name)
-  const [startDate] = useState(new Date())
+  const { value, onChange, ...restField } = field
+  const handleDateChange = useCallback(
+    (date: Date) => {
+      setFieldValue(name, date)
+    },
+    [name, setFieldValue]
+  )
   return (
     <div className={className}>
       <div className="datePicker">
-        <DatePicker selected={startDate} {...field} />
+        <DatePicker
+          selected={value && new Date(value)}
+          onChange={handleDateChange}
+          showTimeSelect
+          {...restField}
+        />
       </div>
     </div>
   )
