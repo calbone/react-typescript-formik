@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react'
 import { useField, useFormikContext } from 'formik'
 import DatePicker from 'react-datepicker'
-// import dayjs from 'dayjs'
-// import 'dayjs/locale/ja'
+import dayjs from 'dayjs'
+import 'dayjs/locale/ja'
 import styled from 'styled-components'
 import 'react-datepicker/dist/react-datepicker.css'
+dayjs.locale('ja')
 
 interface DateCalendarProps {
   className?: string
@@ -28,8 +29,9 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
     <div className={className}>
       <div className="datePicker">
         <DatePicker
-          selected={value && new Date(value)}
+          selected={value}
           onChange={handleDateChange}
+          dateFormat="yyyy/MM/dd HH:MM"
           showTimeSelect
           {...restField}
         />
@@ -47,6 +49,7 @@ const StyledDateCalendar = styled(DateCalendarComponent)`
       display: block;
       width: 100%;
     } */
+
     input {
       width: 100%;
       padding: 8px 56px 8px 14px;
