@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { useField, useFormikContext } from 'formik'
 import DatePicker from 'react-datepicker'
 import dayjs from 'dayjs'
@@ -16,12 +16,24 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
   name,
   className,
 }) => {
+  const [startDate, setStartDate] = useState();
   const { setFieldValue } = useFormikContext()
   const [field] = useField(name)
   const { value, onChange, ...restField } = field
+  // console.log("dayjs1", dayjs())
+  // console.log("dayjs2", dayjs(undefined))
   const handleDateChange = useCallback(
     (date: Date) => {
-      setFieldValue(name, date)
+      const startDate = date;
+      console.log("startDate", startDate)
+      const endDate = date;
+      console.log("endDate", endDate)
+      setFieldValue(name, date);
+      // if(dayjs(endDate).isAfter(dayjs(startDate))) {
+      //   setFieldValue(name, date);
+      // } else {
+      //   console.log("開始日時より後を選択してください。");
+      // }
     },
     [name, setFieldValue]
   )
@@ -31,7 +43,8 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
         <DatePicker
           selected={value}
           onChange={handleDateChange}
-          dateFormat="yyyy/MM/dd HH:MM"
+          dateFormat="yyyy/MM/dd HH:mm"
+          timeFormat="HH:mm"
           showTimeSelect
           {...restField}
         />
