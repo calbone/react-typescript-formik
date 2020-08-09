@@ -16,7 +16,8 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
   name,
   className,
 }) => {
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState<Date | null>(null)
+  const [endDate, setEndDate] = useState<Date | null>(null)
   const { setFieldValue } = useFormikContext()
   const [field] = useField(name)
   const { value, onChange, ...restField } = field
@@ -24,18 +25,20 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
   // console.log("dayjs2", dayjs(undefined))
   const handleDateChange = useCallback(
     (date: Date) => {
-      const startDate = date;
-      console.log("startDate", startDate)
-      const endDate = date;
-      console.log("endDate", endDate)
-      setFieldValue(name, date);
+      if (startDate === null) setStartDate(date)
+      if (startDate) {
+        setEndDate(date)
+      }
+      console.log('startDate', startDate)
+      console.log('endDate', endDate)
+      setFieldValue(name, date)
       // if(dayjs(endDate).isAfter(dayjs(startDate))) {
       //   setFieldValue(name, date);
       // } else {
       //   console.log("開始日時より後を選択してください。");
       // }
     },
-    [name, setFieldValue]
+    [name, setFieldValue, endDate, startDate]
   )
   return (
     <div className={className}>
