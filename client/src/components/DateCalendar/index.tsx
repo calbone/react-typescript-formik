@@ -16,20 +16,25 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
   name,
   className,
 }) => {
-  const [startDate, setStartDate] = useState<Date | null>(null)
-  const [endDate, setEndDate] = useState<Date | null>(null)
+  const [startDate, setStartDate] = useState<Date | undefined>()
+  const [endDate, setEndDate] = useState<Date | undefined>()
   const { setFieldValue } = useFormikContext()
   const [field] = useField(name)
   const { value, onChange, ...restField } = field
-  // console.log("dayjs1", dayjs())
-  // console.log("dayjs2", dayjs(undefined))
-  const handleDateChange = useCallback(
+  const handleStartDateChange = useCallback(
     (date: Date) => {
-      if (startDate === null) setStartDate(date)
-      if (startDate) {
-        setEndDate(date)
+      setStartDate(date)
+      setFieldValue(name, date)
+    },
+    [name, setFieldValue, endDate, startDate]
+  )
+  const handleEndDateChange = useCallback(
+    (date: Date) => {
+      setEndDate(date)
+      if (startDate && dayjs(endDate).isAfter(dayjs(startDate))) {
+        setFieldValue(name, date)
       }
-      console.log('startDate', startDate)
+
       console.log('endDate', endDate)
       setFieldValue(name, date)
       // if(dayjs(endDate).isAfter(dayjs(startDate))) {
@@ -45,7 +50,7 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
       <div className="datePicker">
         <DatePicker
           selected={value}
-          onChange={handleDateChange}
+          onChange={name === '' ? handleStartDateChange : handleStartDateChange}
           dateFormat="yyyy/MM/dd HH:mm"
           timeFormat="HH:mm"
           showTimeSelect
