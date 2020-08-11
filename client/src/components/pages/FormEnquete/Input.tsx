@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useCallback } from 'react'
 import { Form, FormikProps, FieldArray, Formik } from 'formik'
 import styled from 'styled-components'
 import { Questionnaire, QuestionTypes } from 'types/questionnaire'
@@ -217,18 +217,16 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
       ),
     }),
   })
-  const questionTypeChoice = (type: QuestionTypes) => {
+  const questionTypeChoice = useCallback((type: QuestionTypes) => {
     switch (type) {
       case 'selectbox':
-        return true
       case 'radio':
-        return true
       case 'checkbox':
         return true
       default:
         return false
     }
-  }
+  }, [])
   return (
     <Formik
       initialValues={initialValues}
