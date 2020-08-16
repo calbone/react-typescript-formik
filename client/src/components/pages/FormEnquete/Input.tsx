@@ -362,7 +362,6 @@ const Input: React.FC<InitialValuesProps> = ({ initialValues }) => {
                                 )}
                                 <RequireCheck>
                                   <CheckBox
-                                    key={idx}
                                     label="必須"
                                     name={`question_data.questions[${idx}].required`}
                                     value={String(idx)}
