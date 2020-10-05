@@ -1,9 +1,9 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { useField, useFormikContext } from 'formik'
 import DatePicker from 'react-datepicker'
 import dayjs from 'dayjs'
 import 'dayjs/locale/ja'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import 'react-datepicker/dist/react-datepicker.css'
 dayjs.locale('ja')
 
@@ -45,34 +45,31 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
 
 const StyledDateCalendar = styled(DateCalendarComponent)`
   .datePicker {
-    display: flex;
-    align-items: center;
-    /* position: relative; */
-    /* .react-datepicker-wrapper {
-      display: block;
-      width: 100%;
-    } */
-
-    input {
-      width: 100%;
-      padding: 8px 56px 8px 14px;
-      border: 1px solid ${({ theme }) => theme.colors.mainD};
-      border-radius: 4px;
-      background-color: ${({ theme }) => theme.colors.baseC};
-      line-height: 1.714;
-    }
-    &::after {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      width: 0;
-      height: 0;
-      border-width: 5px 5px 0;
-      border-style: solid;
-      border-color: ${({ theme }) => theme.colors.mainC} transparent transparent;
-      pointer-events: none;
-      content: '';
+    margin-bottom: 8px;
+    .react-datepicker-wrapper {
+      position: relative;
+      input {
+        padding: 8px 56px 8px 14px;
+        border: 1px solid ${({ theme }) => theme.colors.mainD};
+        border-radius: 4px;
+        background-color: ${({ theme }) => theme.colors.baseC};
+        line-height: 1.714;
+        width: 100%;
+      }
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 8px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-width: 5px 5px 0;
+        border-style: solid;
+        border-color: ${({ theme }) => theme.colors.mainC} transparent
+          transparent;
+        pointer-events: none;
+        content: '';
+      }
     }
   }
 `
