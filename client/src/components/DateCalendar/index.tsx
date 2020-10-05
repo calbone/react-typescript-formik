@@ -16,36 +16,17 @@ const DateCalendarComponent: React.FC<DateCalendarProps> = ({
   name,
   className,
 }) => {
-  const [startDate, setStartDate] = useState<Date | undefined>(new Date())
-  const [endDate, setEndDate] = useState<Date | undefined>(new Date())
   const { setFieldValue } = useFormikContext()
+
   const [field] = useField(name)
   const { value, onChange, ...restField } = field
 
   const handleStartDateChange = useCallback(
     (date: Date) => {
-      setStartDate(date)
       setFieldValue(name, date)
     },
     [name, setFieldValue]
   )
-  console.log('startDate', startDate)
-
-  // const handleEndDateChange = useCallback(
-  //   (date: Date) => {
-  //     console.log('handleEndDateChange入った!')
-  //     setEndDate(date)
-  //     console.log('endDate', endDate)
-  //     if (dayjs(endDate).isBefore(dayjs(startDate))) {
-  //       console.log('dayのなか')
-  //       alert('開始日時より後を選択してください。')
-  //     } else {
-  //       setFieldValue(name, date)
-  //     }
-  //   },
-  //   [name, setFieldValue, startDate, endDate]
-  // )
-  console.log('endDate', endDate)
   return (
     <div className={className}>
       <div className="datePicker">
