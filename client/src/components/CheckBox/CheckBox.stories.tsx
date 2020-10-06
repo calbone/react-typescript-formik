@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/react'
 import withFormik from 'storybook-formik'
 import { text } from '@storybook/addon-knobs'
 import CheckBox from './'
-import { defaultValues } from '../../constants/defaultValues'
 
 const stories = storiesOf('CheckBox', module)
 stories
