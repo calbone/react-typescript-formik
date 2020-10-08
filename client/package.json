@@ -42,7 +42,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
     "stylelint": "stylelint ./src/**/*.tsx",
-    "storybook": "start-storybook -p 9009 -s public",
+    "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^6.0.26",
     "@storybook/addon-actions": "^5.3.18",
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-info": "^5.3.18",
